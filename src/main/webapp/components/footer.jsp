@@ -1,8 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : Dec 22, 2023, 5:54:29 PM
-    Author     : Admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

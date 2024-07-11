@@ -1,18 +1,18 @@
 function openModal(
-        modalID,
-        id,
-        image1,
-        image2,
-        name,
-        salePrice,
-        price,
-        describe,
-        classifyStr,
-        companyName
-        ) {
-    let modalElement = document.getElementById(modalID);
-    let arr = classifyStr.split(/\s+/);
-    let modal = `<div class="modal-dialog modal-dialog-centered" role="document">
+	modalID,
+	id,
+	image1,
+	image2,
+	name,
+	salePrice,
+	price,
+	describe,
+	classifyStr,
+	companyName
+) {
+	let modalElement = document.getElementById(modalID);
+	let arr = classifyStr.split(/\s+/);
+	let modal = `<div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <button type="button" data-dismiss="modal" aria-label="close" class="close">
             <span aria-hidden="true">&times;</span>
@@ -93,14 +93,14 @@ function openModal(
         </div>
     </div>
 </div>`;
-    console.log("Id:" + id);
-    let result = modalElement.innerHTML = modal;
-    return result;
+	console.log("Id:" + id);
+	let result = modalElement.innerHTML = modal;
+	return result;
 }
 //
 function modalOpen2(modalID, name, avt, balance) {
-    let modalElement = document.getElementById(modalID);
-    let modal = `<div class="modal-dialog modal-dialog-centered" role="document">
+	let modalElement = document.getElementById(modalID);
+	let modal = `<div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" data-dismiss="modal" aria-label="close" class="close">
                     <span aria-hidden="true">&times;</span>
@@ -135,14 +135,14 @@ function modalOpen2(modalID, name, avt, balance) {
                 </div>
             </div>
    </div>`;
-    let result = modalElement.innerHTML = modal;
-    return result;
+	let result = modalElement.innerHTML = modal;
+	return result;
 }
 
 
 function confirmLogout(modalID) {
-    let modalElement = document.getElementById(modalID);
-    let modal = `
+	let modalElement = document.getElementById(modalID);
+	let modal = `
 <div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">
     <div class="modal-content" style="width:500px; margin: 0 auto">
       <div class="modal-header" style="font-size:28px;padding: 30px 0; font-weight: 600; margin: 0 auto"><div>Sign out</div></div>
@@ -154,13 +154,13 @@ function confirmLogout(modalID) {
     </div>
 </div>`;
 
-    let result = modalElement.innerHTML = modal;
-    return result;
+	let result = modalElement.innerHTML = modal;
+	return result;
 }
 
 function modalEditWallet(modalID, username) {
-    let modalElement = document.getElementById(modalID);
-    let modal = `
+	let modalElement = document.getElementById(modalID);
+	let modal = `
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="form" action="addbalance" method="post">
@@ -186,164 +186,164 @@ function modalEditWallet(modalID, username) {
                     </form>
                 </div>
             </div>`;
-    let result = modalElement.innerHTML = modal;
-    return result;
+	let result = modalElement.innerHTML = modal;
+	return result;
 }
 
 //
 function acceptRead() {
-    var elements = document.querySelectorAll(".acceptEdit");
-    var buttonVip = document.getElementById("buttonVip");
-    var buttonVip2 = document.getElementById("buttonVip2");
-    elements.forEach(function (element) {
-        element.readOnly = false;
-    });
+	var elements = document.querySelectorAll(".acceptEdit");
+	var buttonVip = document.getElementById("buttonVip");
+	var buttonVip2 = document.getElementById("buttonVip2");
+	elements.forEach(function(element) {
+		element.readOnly = false;
+	});
 
-    buttonVip.style.display = 'none';
-    buttonVip2.style.display = 'block';
+	buttonVip.style.display = 'none';
+	buttonVip2.style.display = 'block';
 }
 
 //
 function notAccept() {
-    var elements = document.querySelectorAll(".acceptEdit");
-    var buttonVip = document.getElementById("buttonVip");
-    var buttonVip2 = document.getElementById("buttonVip2");
-    elements.forEach(function (element) {
-        element.readOnly = true;
-    });
+	var elements = document.querySelectorAll(".acceptEdit");
+	var buttonVip = document.getElementById("buttonVip");
+	var buttonVip2 = document.getElementById("buttonVip2");
+	elements.forEach(function(element) {
+		element.readOnly = true;
+	});
 
-    buttonVip.style.display = 'block';
-    buttonVip2.style.display = 'none';
+	buttonVip.style.display = 'block';
+	buttonVip2.style.display = 'none';
 }
 
 //
 function checkLogout(choice) {
-    if (choice == 'yes') {
-        document.getElementById('logout').href = 'logout';
-    }
+	if (choice == 'yes') {
+		document.getElementById('logout').href = 'logout';
+	}
 }
 //
 
 function loadProductCart(obj) {
-    var quantity = document.getElementById("quantity").value;
-    var id = document.getElementById("id").value;
-    var role = document.getElementById("role").value;
-    $.ajax({
-        url: "/ClothesShop/cart",
-        type: "get",
-        data: {
-            quantity: quantity,
-            id: id,
-            role: role
-        },
-        success: function (data) {
-            var row = document.getElementById("header_right");
-            row.innerHTML = data;
-        },
-        error: function (xhr) {
-        }
-    });
+	var quantity = document.getElementById("quantity").value;
+	var id = document.getElementById("id").value;
+	var role = document.getElementById("role").value;
+	$.ajax({
+		url: "/ClothesShop/cart",
+		type: "get",
+		data: {
+			quantity: quantity,
+			id: id,
+			role: role
+		},
+		success: function(data) {
+			var row = document.getElementById("header_right");
+			row.innerHTML = data;
+		},
+		error: function(xhr) {
+		}
+	});
 }
 
 function removeProductCart(obj) {
-    var role = "remove";
-    var id = obj.value;
-    console.log(role, id);
-    $.ajax({
-        url: "/ClothesShop/cart",
-        type: "get",
-        data: {
-            rid: id,
-            role: role
-        },
-        success: function (data) {
-            var row = document.getElementById("header_right");
-            row.innerHTML = data;
-        },
-        error: function (xhr) {
-        }
-    });
+	var role = "remove";
+	var id = obj.value;
+	console.log(role, id);
+	$.ajax({
+		url: "/ClothesShop/cart",
+		type: "get",
+		data: {
+			rid: id,
+			role: role
+		},
+		success: function(data) {
+			var row = document.getElementById("header_right");
+			row.innerHTML = data;
+		},
+		error: function(xhr) {
+		}
+	});
 }
 
 
 function reloadPriceViewCart(id) {
-    event.preventDefault();
-    $.ajax({
-        url: "/ClothesShop/priceviewcart",
-        type: "get",
-        data: {
-            rid: id
-        },
-        success: function (data) {
-            var row = document.getElementById("viewcart_content");
-            row.innerHTML = data;
-        },
-        error: function (xhr) {
-        }
-    });
+	event.preventDefault();
+	$.ajax({
+		url: "/ClothesShop/priceviewcart",
+		type: "get",
+		data: {
+			rid: id
+		},
+		success: function(data) {
+			var row = document.getElementById("viewcart_content");
+			row.innerHTML = data;
+		},
+		error: function(xhr) {
+		}
+	});
 }
 
 function toggleWishlist(id) {
-    event.preventDefault();
-    $.ajax({
-        url: "/ClothesShop/wishlist",
-        type: "get",
-        data: {
-            wishId: id
-        },
-        success: function (data) {
-            var row = document.getElementById("header_right");
-            row.innerHTML = data;
-        },
-        error: function (xhr) {
-        }
-    });
+	event.preventDefault();
+	$.ajax({
+		url: "/ClothesShop/wishlist",
+		type: "get",
+		data: {
+			wishId: id
+		},
+		success: function(data) {
+			var row = document.getElementById("header_right");
+			row.innerHTML = data;
+		},
+		error: function(xhr) {
+		}
+	});
 }
-function  loadMore(obj) {
-    var amount = document.getElementsByClassName("product_items").length;
-    var numPage = ((parseInt(obj.textContent) - 1) * 9);
-    $(".linkLoad").removeClass("active");
-    $(obj).addClass("active");
+function loadMore(obj) {
+	var amount = document.getElementsByClassName("product_items").length;
+	var numPage = ((parseInt(obj.textContent) - 1) * 9);
+	$(".linkLoad").removeClass("active");
+	$(obj).addClass("active");
 
-    $.ajax({
-        url: "/ClothesShop/load",
-        type: "get",
-        data: {
-            exits: numPage
-        },
-        success: function (data) {
-            var row = document.getElementById("contentt");
-            row.innerHTML = data;
-        },
-        error: function (xhr) {
-        }
-    });
+	$.ajax({
+		url: "/ClothesShop/load",
+		type: "get",
+		data: {
+			exits: numPage
+		},
+		success: function(data) {
+			var row = document.getElementById("contentt");
+			row.innerHTML = data;
+		},
+		error: function(xhr) {
+		}
+	});
 }
 
 function change() {
-    var a = document.getElementById("avt");
-    if (a.style.display === 'none' || a.style.display === '') {
-        a.style.display = 'block';
-    } else {
-        a.style.display = 'none';
-    }
+	var a = document.getElementById("avt");
+	if (a.style.display === 'none' || a.style.display === '') {
+		a.style.display = 'block';
+	} else {
+		a.style.display = 'none';
+	}
 }
 
 function submitForm() {
-    var here = document.querySelector('#here');
-    var form = document.getElementById('form');
-    var dobDay = document.getElementById('dobDay').value;
-    var dobMonthText = document.getElementById('dobMonth').value;
-    var dobYear = document.getElementById('dobYear').value;
-    if (dobMonthText < 10 && dobDay < 10) {
-        dobFull = dobYear + '-0' + dobMonthText + '-0' + dobDay;
-    } else if (dobMonthText < 10 && !(dobDay < 10)) {
-        dobFull = dobYear + '-0' + dobMonthText + '-' + dobDay;
-    } else if (dobDay < 10 && !(dobMonthText < 10)) {
-        dobFull = dobYear + '-' + dobMonthText + '-0' + dobDay;
-    } else {
-        dobFull = dobYear + '-' + dobMonthText + '-' + dobDay;
-    }
-    here.value = dobFull;
-    form.submit();
+	var here = document.querySelector('#here');
+	var form = document.getElementById('form');
+	var dobDay = document.getElementById('dobDay').value;
+	var dobMonthText = document.getElementById('dobMonth').value;
+	var dobYear = document.getElementById('dobYear').value;
+	if (dobMonthText < 10 && dobDay < 10) {
+		dobFull = dobYear + '-0' + dobMonthText + '-0' + dobDay;
+	} else if (dobMonthText < 10 && !(dobDay < 10)) {
+		dobFull = dobYear + '-0' + dobMonthText + '-' + dobDay;
+	} else if (dobDay < 10 && !(dobMonthText < 10)) {
+		dobFull = dobYear + '-' + dobMonthText + '-0' + dobDay;
+	} else {
+		dobFull = dobYear + '-' + dobMonthText + '-' + dobDay;
+	}
+	here.value = dobFull;
+	form.submit();
 }
