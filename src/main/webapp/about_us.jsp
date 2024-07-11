@@ -416,7 +416,7 @@
         </section>
 
         <!-- #content end -->
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="/components/footer.jsp"/>
     </div><!-- #wrapper end -->
 
 

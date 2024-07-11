@@ -277,5 +277,5 @@
             }
         </script>
     </body>
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="/components/footer.jsp"/>
 </html>

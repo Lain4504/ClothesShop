@@ -31,7 +31,7 @@
                 <span style="font-size: 16px; font-weight: 600">Wallets</span>
             </a>
             <a href="manager" class="list-group-item list-group-item-action" style="margin-top: 10px">
-                <i style="margin-right: 10px; font-size: 18px" <i class="fa-solid fa-cart-shopping"></i>
+                <i style="margin-right: 10px; font-size: 18px" class="fa-solid fa-cart-shopping"></i>
                 <span style="font-size: 16px; font-weight: 600">Products</span>
             </a>
             <a href="top10" class="list-group-item list-group-item-action" style="margin-top: 10px">
