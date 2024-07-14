@@ -210,23 +210,10 @@
 													<span class="current_price ani-fire">Rs.
 														${p.salePrice} </span>
 												</div>
-												<div class="product_rating">
-													<ul>
-														<c:set var="numstar" value="${p.starRating}" />
-														<c:forEach begin="1" end="${numstar}" step="1">
-															<li><a href="#" style="color: orange"> <i
-																	class="fa fa-star"></i>
-															</a></li>
-														</c:forEach>
-														<c:if test="${numstar != 5}">
-															<c:forEach begin="${numstar + 1}" end="5" step="1">
-																<li><a href="#" style="color: black"> <i
-																		class="fa fa-star"></i>
-																</a></li>
-															</c:forEach>
-														</c:if>
-													</ul>
-												</div>
+												<!-- Remove product_rating, start section -->
+												
+												
+												<!-- End section -->
 											</figcaption>
 										</figure>
 									</article>
@@ -380,23 +367,10 @@
 																<h4 class="product_name">
 																	<a href="#">${giftSet.name}</a>
 																</h4>
-																<div class="product_rating">
-																	<ul>
-																		<c:set var="numstar" value="${giftSet.starRating}" />
-																		<c:forEach begin="1" end="${numstar}" step="1">
-																			<li><a href="#" style="color: orange"> <i
-																					class="fa fa-star"></i>
-																			</a></li>
-																		</c:forEach>
-																		<c:if test="${numstar != 5}">
-																			<c:forEach begin="${numstar + 1}" end="5" step="1">
-																				<li><a href="#" style="color: black"> <i
-																						class="fa fa-star"></i>
-																				</a></li>
-																			</c:forEach>
-																		</c:if>
-																	</ul>
-																</div>
+																<!-- Remove product_rating, start section -->
+																
+																
+																<!-- End section -->
 																<div class="price_box">
 																	<c:if test="${i.price != i.salePrice}">
 																		<span class="old_price">Rs. ${i.price}</span>
@@ -515,23 +489,8 @@
 														<h4 class="product_name">
 															<a href="#">${t.name} </a>
 														</h4>
-														<div class="${t.starRating}">
-															<ul style="display: flex">
-																<c:set var="numstar" value="${t.starRating}" />
-																<c:forEach begin="1" end="${numstar}" step="1">
-																	<li><a href="#" style="color: orange"> <i
-																			class="fa fa-star"></i>
-																	</a></li>
-																</c:forEach>
-																<c:if test="${numstar != 5}">
-																	<c:forEach begin="${numstar + 1}" end="5" step="1">
-																		<li><a href="#" style="color: black"> <i
-																				class="fa fa-star"></i>
-																		</a></li>
-																	</c:forEach>
-																</c:if>
-															</ul>
-														</div>
+														
+														
 														<div class="price_box">
 															<span class="old_price">Rs. ${t.price}</span> <span
 																class="current_price">Rs.${t.salePrice}</span>
@@ -608,23 +567,8 @@
 													<h4 class="product_name">
 														<a href="#">${i.name}</a>
 													</h4>
-													<div class="product_rating">
-														<ul>
-															<c:set var="numstar" value="${i.starRating}" />
-															<c:forEach begin="1" end="${numstar}" step="1">
-																<li><a href="#" style="color: orange"> <i
-																		class="fa fa-star"></i>
-																</a></li>
-															</c:forEach>
-															<c:if test="${numstar != 5}">
-																<c:forEach begin="${numstar + 1}" end="5" step="1">
-																	<li><a href="#" style="color: black"> <i
-																			class="fa fa-star"></i>
-																	</a></li>
-																</c:forEach>
-															</c:if>
-														</ul>
-													</div>
+													<!-- Remove Product_rating -->
+													
 													<div class="price_box">
 														<c:if test="${i.price != i.salePrice}">
 															<span class="old_price">Rs. ${i.price}</span>
