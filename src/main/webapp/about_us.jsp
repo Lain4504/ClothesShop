@@ -99,346 +99,133 @@
 
         <!-- Content
 ============================================= -->
-        <section id="content">
-
-            <div class="content-wrap notoppadding nobottompadding">
-
-
-
-                <!-- group 1 -->
-                <section id="section_about" class="corner clearfix" style=" background-image: url('images/banner/banner15.png');">
-                    <div class="container">
-                        <h2 style="font-family: Roboto;font-size: 48px; margin-top: 50px">Store
-                            <span style="font-family: Roboto;color: #ff5722;">
-                                PERFUME PARADISE
-                            </span>
-                        </h2>
-                        <h3 style="font-weight: 400;">
-                            Cửa hàng phân phối nước hoa chính hãng tại Việt Nam
-                        </h3>
-                        <div class="section_about_content col-md-12" style="margin-top: 30px;">
-                            <div class="col-md-4" style="text-align: center;">
-                                <img src="images/products/Women/20-2.png"
-                                     alt="heading_image">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="section_about_content_text">
-                                    <p><i class="fa fa-check" aria-hidden="true"></i><span>Cam kết</span>
-                                        chính hãng.</p>
-                                    <p><i class="fa fa-check" aria-hidden="true"></i>Chính xách bảo hành cho tất cả các sản phẩm
-                                        <span>10 năm.</span></p>
-                                    <p><i class="fa fa-check" aria-hidden="true"></i>Giao hàng
-                                        <span>nhanh chóng</span> nhận hàng sau 3 ngày.</p>
-                                </div>
-                                <a class="button-click" href="refine?cid_refine=0" data-href="#section_detail">
-                                    <button>CHỌN MUA NGAY </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- end group 1 -->
+       	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			About
+		</h2>
+	</section>	
 
 
+	<!-- Content page -->
+	<section class="bg0 p-t-75 p-b-120">
+		<div class="container">
+			<div class="row p-b-148">
+				<div class="col-md-7 col-lg-8">
+					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Our Story
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						</p>
+					</div>
+				</div>
+
+				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+					<div class="how-bor1 ">
+						<div class="hov-img0">
+							<img src="images/about-01.jpg" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Our Mission
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
+						</p>
+
+						<div class="bor16 p-l-29 p-b-9 m-t-22">
+							<p class="stext-114 cl6 p-r-40 p-b-11">
+								Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
+							</p>
+
+							<span class="stext-111 cl8">
+								- Steve Jobâs 
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+					<div class="how-bor2">
+						<div class="hov-img0">
+							<img src="images/about-02.jpg" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
+	
+		
+
+	<!-- Footer -->
+		<jsp:include page="components/footer.jsp"/>
+	
 
 
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
 
-                <!-- group 2 -->
-                <section id="section_inspiration" class="marbtm10 clearfix">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="col-sm-12 col-md-9 col-md-offset-3 pad0">
-                                <div class="section_content">
-                                    <h2 class="section_inspiration_title">Cam Kết Chính Hãng</h2>
-                                    <div class="section_inspiration_content">
-                                        <p>
-                                            Tại Perfume Paradise, chúng tôi tự hào mang đến cho quý khách hàng những sản phẩm nước hoa chính hãng, đảm bảo về chất 
-                                            lượng và nguồn gốc xuất xứ. Chúng tôi hợp tác chặt chẽ với các nhãn hiệu nổi tiếng trên thị
-                                            trường để đảm bảo rằng mọi sản phẩm mà quý khách chọn lựa đều là sự kết hợp tinh tế giữa nghệ thuật và chất lượng.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 pad0" style="text-align: center;">
-                            <a href="">
-                                <picture>
-                                    <img src="images/banner/banner2.jpg"
-                                         alt="section_inspiration_small" itemprop="image"
-                                         title="section_inspiration_small">
-                                </picture>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 pad0" style="text-align: center;">
-                            <a href="">
-                                <picture>
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
 
-                                    <img src="images/banner/banner11.png"
-                                         alt="section_inspiration_large" itemprop="image"
-                                         title="section_inspiration_large">
-                                </picture>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-                <!-- end group 2 -->
-
-
-
-
-
-                <!-- group 3 -->
-                <section id="section_material" class="clearfix">
-                    <div class="row marbtm10">
-                        <div class="col-sm-6 col-sm-push-6 pad0">
-                            <div class="col-sm-12 col-md-9">
-                                <div class="section_content">
-                                    <h3 class="section_material_1_title">Mẫu Mã Đa Dạng</h3>
-
-                                    <blockquote class="section_material_1_quote"><i>Chúng tôi hiểu rằng mỗi người đều có cái 
-                                            tôi riêng biệt, vì vậy chúng tôi không chỉ cung cấp những hương thơm phổ biến mà còn 
-                                            mang đến những dòng nước hoa độc đáo và nổi bật</i></blockquote>
-
-                                    <div class="section_material_1_content">
-                                        Perfume Paradise tự hào mang đến cho quý khách hàng một bộ sưu tập nước hoa đa dạng và phong phú,
-                                        từ những hương thơm tinh tế và quyến rũ cho đến những lựa chọn tươi mới và tràn đầy năng lượng.
-                                        Chúng tôi liên tục cập nhật danh mục sản phẩm để đáp ứng mọi sở thích và phong cách cá nhân của quý khách.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-sm-pull-6 pad0" style="text-align: center;">
-                            <picture>
-                                <img src="images/banner/banner14.jpg"
-                                     alt="section_material_1_image" itemprop="image" title="section_material_1_image">
-                            </picture>
-                        </div>
-                    </div>
-                    <div class="row marbtm10">
-                        <div class="col-sm-6 pad0">
-                            <div class="col-sm-12 col-md-9 col-md-offset-3">
-                                <div class="section_content">
-                                    <h3 class="section_material_2_title">Hỗ Trợ Khách Hàng Nhanh Chóng</h3>
-
-                                    <div class="section_material_2_content">
-                                        Tại Perfume Paradise, đội ngũ hỗ trợ khách hàng của chúng tôi luôn sẵn sàng lắng
-                                        nghe và giải đáp mọi thắc mắc của quý khách. Bạn có thể liên hệ với chúng tôi thông 
-                                        qua điện thoại, email hoặc trực tiếp tại cửa hàng để nhận được sự tư vấn chuyên nghiệp 
-                                        và nhanh chóng. Chúng tôi tin rằng sự hài lòng của khách hàng là chìa khóa mở cửa cho sự 
-                                        thành công của chúng tôi.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 pad0" style="text-align: center;">
-                            <picture>
-                                <img src="images/banner/banner10.jpg"
-                                     alt="section_material_2_image" itemprop="image" title="section_material_2_image">
-                            </picture>
-                        </div>
-                    </div>
-                </section>
-                <!-- end group 3 -->
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	
 
 
-
-
-
-
-                <!-- group 5 -->
-                <div class="clear"></div>
-
-                <div id="section_contact" class="page-section nobottompadding notoppadding"  style="padding: 0">
-                    <div class="row noleftmargin norightmargin common-height">
-                        <div class='index_map col-md-6 col-sm-6 hidden-xs nopadding'>
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.60994153052!2d106.80730807586922!3d10.841132857995166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752731176b07b1%3A0xb752b24b379bae5e!2sFPT%20University%20HCMC!5e0!3m2!1sen!2s!4v1703229023591!5m2!1sen!2s"
-                                width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-                        </div>
-
-                        <!-- Google Map End -->
-
-                        <div class="col-md-6 col-sm-6" style="background-color: #383c44">
-                            <div class="max-height" style='padding: 60px 30px'>
-                                <h3 class="" style='color: #ffffff; font-size: 24px; '>Văn phòng chính</h3>
-
-                                <div style="line-height: 1.7;">
-                                    <address style="line-height: 1.7; font-size: 16px; color: #dbdbdb ;">
-                                        <strong style='color: #fff'>North America:</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-
-                                    </address>
-                                    <address style="line-height: 1.7; font-size: 16px; color: #dbdbdb ;">
-                                        <strong style='color: #fff'>Miền Nam:</strong><br>
-                                        61/2 Quang Trung, Ward 10<br>
-                                        Go Vap District, Ho Chi Minh city<br>
-                                        Hotline: 1900 9090<br />
-                                        Email: perfumeparadisevn@gmail.com
-                                    </address>
-                                    <address style="line-height: 1.7; font-size: px; color: #ffffff ;">
-
-                                    </address>
-                                    <address style="line-height: 1.7; font-size: px; color: #ffffff ;">
-
-                                    </address>
-                                    <address style="line-height: 1.7; font-size: px; color: #ffffff ;">
-
-                                    </address>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <style>
-                    #section_contact {
-                        position: relative;
-                    }
-
-                    .modal-body {
-                        padding: 30px 15px;
-                    }
-
-                    button.close {
-                        margin: 5px 10px;
-                        z-index: 99;
-                        position: absolute;
-                        right: 0;
-                    }
-
-                    .contact-form {
-                        background: #fff;
-                        height: 356px
-                    }
-
-                    .flip-box-part {
-                        padding: 38px 40px 34px;
-                        width: 100%;
-                        margin: 0;
-                        top: 0;
-                        left: 0;
-                        -webkit-backface-visibility: hidden;
-                        backface-visibility: hidden;
-                        -webkit-transition: 0.6s;
-                        -webkit-transform-style: preserve-3d;
-                        -webkit-transform: rotateY(0deg);
-                        -moz-transition: 0.6s;
-                        -moz-transform-style: preserve-3d;
-                        -moz-transform: rotateY(0deg);
-                        -o-transition: 0.6s;
-                        -o-transform-style: preserve-3d;
-                        -o-transform: rotateY(0deg);
-                        -ms-transition: 0.6s;
-                        -ms-transform-style: preserve-3d;
-                        -ms-transform: rotateY(0deg);
-                        transition: 0.6s;
-                        -webkit-transform-style: preserve-3d;
-                        transform-style: preserve-3d;
-                        -webkit-transform: rotateY(0deg);
-                        transform: rotateY(0deg);
-                    }
-
-                    .btn-block {
-                        font: 600 19px/63px "Poppins", sans-serif;
-                        text-transform: uppercase;
-                        border: none;
-                        transition: all 300ms linear 0s;
-                        border-radius: 0;
-                        background: #0084ff;
-                        color: #FFF;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-
-                    .form-control {
-                        border-radius: 0;
-                        box-shadow: none;
-                        font: 300 17px/24px "Poppins", sans-serif;
-                        padding: 12px 18px;
-                        height: 50px;
-                        border-color: #e0e8ee;
-                        background: #f8fbfd;
-                    }
-
-                    .contact-form .js-close-flip {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        padding: 5px 10px;
-                        font-size: 23px;
-                        text-decoration: none;
-                        color: #c0cad0;
-                    }
-
-                    .form-group {
-                        margin-bottom: 20px;
-                    }
-
-                    .row-15 {
-                        margin-left: -15px;
-                        margin-right: -15px;
-                    }
-
-                    .contact-box h2 {
-                        color: #374048;
-                        margin: 0;
-                        font-weight: bold;
-                        text-transform: uppercase;
-                    }
-
-                    .contact-box ul li {
-                        color: #777;
-                        font-size: 16px;
-                        padding-left: 30px;
-                    }
-
-                    .contact-box ul li i {
-                        width: 30px;
-                        float: left;
-                        margin-left: -30px;
-                        line-height: 32px;
-                    }
-
-                    .contact-box ul {
-                        margin: 25px 0 30px;
-                    }
-
-                    .contact-box ul li+li {
-                        margin-top: 10px;
-                    }
-                </style>
-            </div>
-        </section>
-
-        <!-- #content end -->
-        <jsp:include page="/components/footer.jsp"/>
-    </div><!-- #wrapper end -->
-
-
-    <link href="//bizweb.dktcdn.net/100/048/087/themes/776353/assets/bootstrap.min.scss.css?1671122359380"
-          rel="stylesheet" type="text/css" media="all" />
-    <link href="//bizweb.dktcdn.net/100/048/087/themes/776353/assets/style.css?1671122359380" rel="stylesheet"
-          type="text/css" media="all" />
-    <link rel="stylesheet" type="text/css"
-          href="//hstatic.net/0/global/design/member/fonts/svn-gotham-book,sans-serif.css">
-
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//bizweb.dktcdn.net/100/048/087/themes/776353/assets/scripts.js?1671122359380"
-    type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>   
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
-    <script src="js/countdown.js"></script>
-    <script src="js/clickevents.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>

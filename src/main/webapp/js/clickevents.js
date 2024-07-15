@@ -74,9 +74,10 @@ function openModal(
                                 
                                 <div class="variants_fragrance">
                                     <h2>Size</h2>
-                                    <select class="select_option" style="border: 1px solid #ced4da;padding: 10px 0">
+                                    <select class="select_option rounded" style="border: 1px solid #ced4da; padding: 10px 0; width: 200px;">
                                     ${arr.map((si, index) => `<option value="${index + 1}" selected>${si}</option>`).join('')}
                                 </select>
+                                
                                 </div>
                                 
                                 <div class="modal_add_to_cart5">
