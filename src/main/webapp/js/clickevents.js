@@ -71,20 +71,26 @@ function openModal(
                                 <div class="variants_size">
                                     <h2>Supplier: ${companyName}</h2><br/>
                                 </div>
+                                
                                 <div class="variants_fragrance">
                                     <h2>Size</h2>
-                                    <select class="select_option" style="padding: 10px 0">
+                                    <select class="select_option" style="border: 1px solid #ced4da;padding: 10px 0">
                                     ${arr.map((si, index) => `<option value="${index + 1}" selected>${si}</option>`).join('')}
                                 </select>
                                 </div>
-                                <div class="modal_add_to_cart">
-                                    <form>
-                                        <input id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="1">
-                                        <input id="id" name="id" type="hidden" value="${id}">
-                                        <input id="role" name="role" type="hidden" value="add">
-                                        <button onclick="loadProductCart(this)" type="button">Add to cart</button>
-                                    </form>
-                                </div>
+                                
+                                <div class="modal_add_to_cart5">
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+<input id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="1" 
+class="form-control col-3 mb-3 rounded text-center" style="border: 1px solid #ced4da;">
+    </div>
+    <input id="id" name="id" type="hidden" value="${id}">
+    <input id="role" name="role" type="hidden" value="add">
+    <button onclick="loadProductCart(this)" type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 mt-3">Add to cart</button>
+</div>
+
+                                
                             </div>
                         </div>
                     </div>
