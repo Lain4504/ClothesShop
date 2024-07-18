@@ -11,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perfume Paradise Store</title>
+        <title>Man Fashion Store</title>
         <link rel="icon" href="images/logo1.png"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -138,7 +138,7 @@
                                                 </c:if>
                                             </fieldset>
                                         </div>
-                                        <div class="section_title section_title_style2">
+                                       <!--  <div class="section_title section_title_style2">
                                             <h2 style="font-size: 16px">Average Reviews</h2>
                                             <fieldset class="responsiveFacets_sectionContent " aria-hidden="false">
                                                 <div class="responsiveFacets_sectionItemLabel">
@@ -186,7 +186,7 @@
                                                     </div>
                                                 </div>
                                             </fieldset>
-                                        </div>
+                                        </div> -->
                                         <div class="section_title section_title_style2">
                                             <h2 style="font-size: 16px">Price</h2>
                                             <fieldset class="responsiveFacets_sectionContent " aria-hidden="false">
@@ -312,27 +312,7 @@
                                                         <h4 class="product_name">
                                                             <a href="#">${i.name}</a>
                                                         </h4>
-                                                        <div class="product_rating" style="width: 100%;">
-                                                            <ul>
-                                                                <c:set var="numstar" value="${i.starRating}"/>
-                                                                <c:forEach begin="1" end="${numstar}" step="1">
-                                                                    <li>
-                                                                        <a href="#" style="color: orange">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                </c:forEach>
-                                                                <c:if test="${numstar != 5}">
-                                                                    <c:forEach begin="${numstar + 1}" end="5" step="1">
-                                                                        <li>
-                                                                            <a href="#" style="color: black">
-                                                                                <i class="fa fa-star"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </c:forEach>
-                                                                </c:if>
-                                                            </ul>
-                                                        </div>
+                                                       
                                                         <div class="price_box">
                                                             <c:if test="${i.price != i.salePrice}">
                                                                 <span class="old_price">Rs. ${i.price}</span>

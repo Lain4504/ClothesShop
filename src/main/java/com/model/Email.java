@@ -98,7 +98,7 @@ public class Email {
     }
 
     public String subjectOrder(String fullName) {
-        return "Hi, " + fullName + ", thanks for your order from Perfume Paradise Store!";
+        return "Hi, " + fullName + ", thanks for your order from Man Fashion Store!";
     }
 
     public String subjectForgotPass() {

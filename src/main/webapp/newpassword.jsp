@@ -55,7 +55,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div>ghugeguehgeug
                 </div>
                 <div class="col-md-6 col-12 fxt-none-767 fxt-bg-img" data-bg-image="images/figure/aa.jpg"></div>
             </div>

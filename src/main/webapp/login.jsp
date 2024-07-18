@@ -66,7 +66,7 @@
                 <div class="col-md-6 col-12 fxt-bg-color">
                     <div class="fxt-content" >
                         <div class="fxt-header" style="margin-bottom: 15px">
-                            <a href="home" class="fxt-logo"><img src="images/logo.png" alt="Logo"></a>
+                            <a href="home" class="fxt-logo"><img src="images/logo_new.png" alt="Logo"></a>
                             <div class="fxt-page-switcher">
                                 <a href="login" class="switcher-text1 active">Log In</a>
                                 <a href="register" class="switcher-text1">Register</a>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-12 fxt-none-767 fxt-bg-img" data-bg-image="images/figure/aa.jpg"></div>
+                <div class="col-md-6 col-12 fxt-none-767 fxt-bg-img" data-bg-image="images/products/phukien/bangdo1.jpg"></div>
             </div>
         </div>
     </section>
