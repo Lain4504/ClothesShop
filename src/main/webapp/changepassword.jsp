@@ -121,7 +121,7 @@
             <div class="row align-items-center" style="margin: 0">
                 <div class="col-lg-2" style="padding: 0px">
                     <div class="logo">
-                        <a href="home"><img src="images/logo.png" alt=""></a>
+                        <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-3" style="padding: 0px">
@@ -131,9 +131,7 @@
                                 <li>
                                     <a href="home">Home</a>
                                 </li>
-                                <li>
-                                    <a href="profile">Profile</a>
-                                </li>
+                               
                                 <li>
                                     <a href="changepass" class="active" >Security</a>
                                 </li>

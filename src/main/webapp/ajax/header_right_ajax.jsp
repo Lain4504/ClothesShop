@@ -57,19 +57,15 @@
                 <ul>
                     <li class="user">
                         <c:if test="${sessionScope.account == null}">
-                            <a href="login" title="Icon User">
-                                <i class="fa fa-user-circle"></i>
-                            </a>
+                            
                         </c:if>
                         <c:if test="${sessionScope.account != null && sessionScope.account.roleID!=1}">
-                            <a href="profile" title="Icon User">
-                                <i class="fa fa-user-circle"></i>
-                            </a>
+                            
                         </c:if>
                     </li>
                     <li class="header_wishlist">
                         <a href="viewwishlist">
-                            <i class="fa fa-heart-o"></i>
+                              <i class="fa fa-heart-o"></i>
                             <c:if test="${sessionScope.wishList != null && sessionScope.wishListSize != 0}" >
                                 <span class="item_count">
                                     ${sessionScope.wishListSize}
@@ -77,13 +73,7 @@
                             </c:if>
                         </a>
                     </li>
-                    <c:if test="${sessionScope.account.roleID==1}">
-                        <li class="header_wishlist">
-                            <a href="admin">
-                                <i class="fa-solid fa-chalkboard-user"></i>
-                            </a>
-                        </li>
-                    </c:if>
+                    
                     <li id="productsCart" class="mini_cart_wrapper">
                         <a href="javascript:void(0)" >
                             <i class="fa fa-shopping-cart"></i>
@@ -151,15 +141,17 @@
             </div>
             <div class="header_account">
                 <ul>
-                    <li class="top_links">
-                        <a href="#">
-                            <i class="fa fa-cog"></i>
-                        </a>
-                        <ul class="dropdown_links">
-                            <li><a href="profile">My Account</a></li>
-                            <li><a href="profile">Shopping cart</a></li>
-                        </ul>
-                    </li>
+                    <c:if test="${sessionScope.account==null}">
+													
+															<li><a href="login">Login In</a></li>
+															  
+															<li><a href="register">Sign Up</a></li>
+														</ul>
+													</li>
+												</c:if>
+												<c:if test="${sessionScope.account!=null}">
+													
+												</c:if>
                     <c:if test="${sessionScope.account!=null}">
                         <li onclick="change()" style="position: relative; cursor: pointer;">
                             <img src="${sessionScope.account.image}" width="40px" style="color: white; border-radius: 50% ;border: 2px solid white;">

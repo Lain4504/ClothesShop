@@ -83,7 +83,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-2">
 							<div class="logo">
-								<a href="home"><img src="images/logo_new.png" alt=""></a>
+								<a href="home"><img src="images/icons/logo-01.png" alt=""></a>
 							</div>
 						</div>
 

@@ -58,6 +58,7 @@
 			<!--===============================================================================================-->
 			<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 			<!--===============================================================================================-->
+			
 		</head>
 
 		<body>
@@ -69,7 +70,7 @@
 							<div class="row align-items-center">
 								<div class="col-lg-2">
 									<div class="logo">
-										<a href="home"><img src="images/logo.png" alt=""></a>
+										<a href="home"><img src="images/icons/logo-01.png"  alt=""></a>
 									</div>
 								</div>
 
@@ -94,17 +95,7 @@
 												</li>
 												<li><a href="aboutus">About Us</a></li>
 												<li><a href="contact">Contact Us</a></li>
-												<c:if test="${sessionScope.account==null}">
-													<li><a href="#">User <i class="fa fa-angle-down"></i></a>
-														<ul class="sub_menu pages">
-															<li><a href="login">Login In</a></li>
-															<li><a href="register">Sign Up</a></li>
-														</ul>
-													</li>
-												</c:if>
-												<c:if test="${sessionScope.account!=null}">
-													<li><a href="profile">Profile</a></li>
-												</c:if>
+												
 											</ul>
 										</nav>
 									</div>

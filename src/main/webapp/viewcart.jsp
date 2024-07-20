@@ -183,7 +183,7 @@
         <header style="background-color: black; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center">
             <div class="col-lg-2">
                 <div class="logo">
-                    <a href="home"><img src="images/logo.png" alt=""></a>
+                    <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-10">

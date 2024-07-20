@@ -25,6 +25,13 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdn.tailwindcss.com/3.3.2"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"/>
+        
+         <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
         <style type="text/css">
             .a {
                 color: black;
@@ -40,7 +47,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-2">
                                 <div class="logo">
-                                    <a href="home"><img src="images/logo.png" alt=""></a>
+                                    <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                                 </div>
                             </div>
 
@@ -67,20 +74,7 @@
                                             </li>
                                             <li><a href="aboutus" style="color:#f6692a ">About Us</a></li>
                                             <li><a href="contact" >Contact Us</a></li>
-                                                <c:if test="${sessionScope.account==null}">
-                                                <li>
-                                                    <a href="#">User <i class="fa fa-angle-down"></i></a>
-                                                    <ul class="sub_menu pages">
-                                                        <li><a href="login">Login In</a></li>
-                                                        <li><a href="register">Sign Up</a></li>
-                                                    </ul>
-                                                </li>
-                                            </c:if>
-                                            <c:if test="${sessionScope.account!=null}">
-                                                <li>
-                                                    <a href="profile">Profile</a> 
-                                                </li>
-                                            </c:if>
+                                              
                                         </ul>
                                     </nav>
                                 </div>

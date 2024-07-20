@@ -21,7 +21,7 @@
                 <div class="col-md-6 col-12 fxt-bg-color" >
                     <div class="fxt-content" >
                         <div class="fxt-header" style="margin-bottom: 15px">
-                            <a href="home" class="fxt-logo"><img src="images/logo_new.png" alt="Logo"></a>
+                            <a href="home" class="fxt-logo"><img src="images/icons/logo-01.png" alt="Logo"></a>
                             <div class="fxt-page-switcher">
                                 <a href="login" class="switcher-text1">Log In</a>
                                 <a href="register" class="switcher-text1 active">Register</a>

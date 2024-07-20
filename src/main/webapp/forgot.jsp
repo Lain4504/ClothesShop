@@ -29,7 +29,7 @@
                     <div class="col-md-6 col-12 fxt-bg-color">
                         <div class="fxt-content">
                             <div class="fxt-header">
-                                <a href="home" class="fxt-logo"><img src="images/logo.png" alt="Logo"></a>
+                                <a href="home" class="fxt-logo"><img src="images/icons/logo-01.png" alt="Logo"></a>
 
                                 <div class="fxt-page-switcher">
                                     <a href="login" class="switcher-text1">Log In</a>

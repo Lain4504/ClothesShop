@@ -56,18 +56,7 @@
             <div class="header_top_right">
                 <div class="header_right_info">
                     <ul>
-                        <li class="user">
-                            <c:if test="${sessionScope.account == null}">
-                                <a href="login" title="Icon User">
-                                    <i class="fa fa-user-circle"></i>
-                                </a>
-                            </c:if>
-                            <c:if test="${sessionScope.account != null && sessionScope.account.roleID!=1}">
-                                <a href="profile" title="Icon User">
-                                    <i class="fa fa-user-circle"></i>
-                                </a>
-                            </c:if>
-                        </li>
+                        
                         <li class="header_wishlist">
                             <a href="viewwishlist">
                                 <i class="fa fa-heart-o"></i>
@@ -78,13 +67,7 @@
                                 </c:if>
                             </a>
                         </li>
-                        <c:if test="${sessionScope.account.roleID==1}">
-                            <li class="header_wishlist">
-                                <a href="admin">
-                                    <i class="fa-solid fa-chalkboard-user"></i>
-                                </a>
-                            </li>
-                        </c:if>
+                        
                         <li id="productsCart" class="mini_cart_wrapper">
                             <a href="javascript:void(0)" >
                                 <i class="fa fa-shopping-cart"></i>
@@ -152,15 +135,18 @@
                 </div>
                 <div class="header_account">
                     <ul>
-                        <li class="top_links">
-                            <a href="#">
-                                <i class="fa fa-cog"></i>
-                            </a>
-                            <ul class="dropdown_links">
-                                <li><a href="profile">My Account</a></li>
-                                <li><a href="refine?cid_refine=0">Shopping</a></li>
-                            </ul>
-                        </li>
+                       
+                        <c:if test="${sessionScope.account==null}">
+													
+															<li><a href="login">Login In</a></li>
+															  
+															<li><a href="register">Sign Up</a></li>
+														</ul>
+													</li>
+												</c:if>
+												<c:if test="${sessionScope.account!=null}">
+													
+												</c:if>
                         <c:if test="${sessionScope.account!=null}">
                             <li onclick="change()" style="position: relative; cursor: pointer;">
                                 <img src="${sessionScope.imageUser}" width="40px" style="color: white; border-radius: 50% ;border: 2px solid white;">
@@ -174,8 +160,9 @@
                                     z-index: 1;
                                     border-radius: 5px;
                                     box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);">
-                                    <li class="option_avt"><a href="#">Checkout</a>
-                                    <li class="option_avt"><a href="${sessionScope.account.roleID==1?"admin":"profile"}">My Account</a></li>
+                                 <!--  <li class="option_avt"><a href="#">Checkout</a> -->
+                                 <li class="option_avt "><a href="profile"> My Account</a></li>
+                                    <li class="option_avt"><a href="${sessionScope.account.roleID==1?"admin":"profile"}">Dashboard</a></li>
                                     <li class="option_avt">
 
                                         <a id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmLogout('modal_box')">

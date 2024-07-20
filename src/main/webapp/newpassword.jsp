@@ -25,7 +25,7 @@
                 <div class="col-md-6 col-12 fxt-bg-color">
                     <div class="fxt-content" >
                         <div class="fxt-header" style="margin-bottom: 15px">
-                            <a href="home" class="fxt-logo"><img src="images/logo.png" alt="Logo"></a>
+                            <a href="home" class="fxt-logo"><img src="images/icons/logo-01.png" alt="Logo"></a>
                         </div>
                         <div class="fxt-form">
                             <h2 style="color: red">Choose a new password</h2>
