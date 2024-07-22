@@ -66,14 +66,14 @@
     </head>
 
     <body style="height: auto">
-        <div class="page-body">
+        
             <header>
-                <div class="main_header header_transparent header-mobile-m">
-                    <div class="header_container sticky-header">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2">
-                                    <div class="logo">
+                <div class="main_header header_transparent header-mobile-m" style="margin: 0">
+                <div class="header_container sticky-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2">
+                                    <div class="logo" style="margin-left: 30px;">
                                         <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                                     </div>
                                 </div>

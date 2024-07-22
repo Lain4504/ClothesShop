@@ -90,7 +90,7 @@
                 min-height: 100vh;
                 width: 100%;
                 font-family: "Nunito", sans-serif;
-                background-image: url(images/magic.gif);
+                background-image: url(images/dd.jpg);
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;
@@ -143,7 +143,7 @@
         <header style="background-color: rgba(0, 0, 0, 0.7); color: white; padding: 10px 0; font-family: Lato, sans-serif">
             <div class="row align-items-center" style="margin: 0">
                 <div class="col-lg-2" style="padding: 0px">
-                    <div class="logo">
+                    <div class="logo" style="margin-left: 50px;">
                         <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                         <div class="container d-flex justify-content-center">
                             <div class="card p-3" style="margin: 10px 0">
                                 <div class="d-flex flex-row justify-content-center text-align-center">
-                                    <img src="images/logo.png">
+                               
                                     <p class="text-dark">Shopping wallet</p>
                                 </div>
                                 <div class="card-bottom pt-3 px-3 mb-2" style="padding: 10px">

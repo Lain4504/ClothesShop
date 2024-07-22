@@ -10,8 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="icon" href="images/logo1.png"/>
-
+      
+<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
         <style>
             .option_avt {
                 font-size: 16px;
@@ -59,7 +59,7 @@
     </head>
     <body>
         <div id="head_vip" class="header_container sticky-header" style="width: 100%;
-             background-color: black;
+             background-color: #d6dbde;
              padding: 21px;
              margin-bottom: 40px;
              z-index: 1">

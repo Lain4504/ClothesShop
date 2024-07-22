@@ -61,11 +61,11 @@
         <header>
             <div class="main_header header_transparent header-mobile-m">
                 <div class="header_container sticky-header" style="padding: 0">
-                    <div class="container-fluid" style="background-color: black">
+                    <div class="container-fluid" style="background-color: #808080">
                         <div class="row align-items-center" style="padding: 8px 0">
                             <div class="col-lg-3">
-                                <div class="logo">
-                                    <a href="home"><img src="images/logo.png" alt=""></a>
+                                <div class="logo" style="margin-left: 30px;"> 
+                                    <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -354,6 +354,7 @@
         </div>
 
         <jsp:include page="/components/footer.jsp"/>
+        
         <div class="modal fade" id="modal_box" role="dialog"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>   
@@ -461,5 +462,55 @@
 
 
         </script>
+                  		
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	
+<!--===============================================================================================-->
+	<script src="components/main.js"></script>
     </body>
 </html>
