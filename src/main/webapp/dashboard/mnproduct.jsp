@@ -214,75 +214,75 @@
         <div class="modal fade" id="modal_box" role="dialog"></div>
         <!-- Edit Modal HTML -->
         <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog" style="margin: 28px 500px">
-                <div class="modal-content" style="width: 1000px; max-height: 900px; overflow: scroll">
-                    <form action="addproduct" method="get" enctype="multipart/form-data">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Product Name</label>
-                                <input name="name" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input multiple name="image" type="file">
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="number" step="0.01" min="0" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Describe</label>
-                                <textarea name="describe" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Quantity</label>
-                                <input name="quantity" type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label>Quantity Per Unit</label>
-                                <input name="quantityunit" type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" id="stringdateolb" value="${detail.date}">
-                                <div style="margin-bottom: 10px">Release Date</div>
-                                <input type="hidden" name="date" value="" id="here"/>
-                                <select class="bear-dates" id="dobDay" ></select>
-                                <select class="bear-months" id="dobMonth"></select>
-                                <select class="bear-years" id="dobYear"></select>
-                            </div>
-                            <div class="form-group">
-                                <label>Discount</label>
-                                <input name="discount" type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label>Supplier</label>
-                                <select style="padding: 5px 0" name="supplier" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${list}" var="sup">
-                                        <option value="${sup.id}">${sup.companyName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select style="padding: 5px 0" name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listCC}" var="o">
-                                        <option value="${o.id}">${o.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">  
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" onclick="submitForm()" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
+    <div class="modal-dialog" style="margin: 28px 500px">
+        <div class="modal-content" style="width: 1000px; max-height: 900px; overflow: scroll">
+            <form action="addproduct" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Product</h4>
                 </div>
-            </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input multiple name="image" type="file">
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input name="price" type="number" step="0.01" min="0" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Describe</label>
+                        <textarea name="describe" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input name="quantity" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity Per Unit</label>
+                        <input name="quantityunit" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="stringdateolb" value="${detail.date}">
+                        <div style="margin-bottom: 10px">Release Date</div>
+                        <input type="hidden" name="date" value="" id="here"/>
+                        <select class="bear-dates" id="dobDay"></select>
+                        <select class="bear-months" id="dobMonth"></select>
+                        <select class="bear-years" id="dobYear"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Discount</label>
+                        <input name="discount" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Supplier</label>
+                        <select style="padding: 5px 0" name="supplier" class="form-select" aria-label="Default select example">
+                            <c:forEach items="${list}" var="sup">
+                                <option value="${sup.id}">${sup.companyName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select style="padding: 5px 0" name="category" class="form-select" aria-label="Default select example">
+                            <c:forEach items="${listCC}" var="o">
+                                <option value="${o.id}">${o.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" onclick="submitForm()" class="btn btn-success" value="Add">
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

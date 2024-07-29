@@ -53,7 +53,7 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog" style="width: 100%">
                     <div class="modal-content">
-                        <form id="form" action="editproduct" method="get">
+                    <form id="form" action="editproduct" method="post" enctype="multipart/form-data">     
                             <div class="modal-header">						
                                 <h4 class="modal-title">Edit Product</h4>
                                 <a href="manager">

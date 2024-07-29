@@ -1,52 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller.admin.management.product;
 
 import com.dal.ProductDAO;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
-@WebServlet(name = "EditControl", urlPatterns = {"/editproduct"})
+@WebServlet(name = "EditProductControl", urlPatterns = {"/editproduct"})
+@MultipartConfig
 public class EditProductControl extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         String pid_raw = request.getParameter("id");
         String pname = request.getParameter("name");
-        String[] pimage = request.getParameterValues("image");
-
         String pprice_raw = request.getParameter("price");
         String pdescribe = request.getParameter("describe");
         String pquantity_raw = request.getParameter("quantity");
+        String pquantityunit = request.getParameter("quantityunit");
         String pdate = request.getParameter("date");
         String pdiscount_raw = request.getParameter("discount");
-        String pquantityunit = request.getParameter("quantityperunit");
-
         String pcategory_raw = request.getParameter("category");
         String psupplier_raw = request.getParameter("supplier");
-        ProductDAO dao = new ProductDAO();
+
         double pprice, pdiscount;
         int pid, pquantity, psupplier, pcategory;
-        String image = "";
+        String imagePaths = "";
+
         try {
             pprice = Double.parseDouble(pprice_raw);
             pdiscount = Double.parseDouble(pdiscount_raw);
@@ -54,31 +44,37 @@ public class EditProductControl extends HttpServlet {
             pid = Integer.parseInt(pid_raw);
             psupplier = Integer.parseInt(psupplier_raw);
             pcategory = Integer.parseInt(pcategory_raw);
-            if (pimage[0] != null && !pimage[0].equals("")) {
-                for (int i = 0; i < pimage.length; i++) {
-                    switch (pcategory) {
-                        case 1:
-                            image += "images/products/Men/" + pimage[i] + ",";
-                            break;
-                        case 2:
-                            image = "images/products/Women/" + pimage[i] + ",";
-                            break;
-                        case 3:
-                            image = "images/products/Kids/" + pimage[i] + ",";
-                            break;
-                        case 4:
-                            image = "images/products/Unisex/" + pimage[i] + ",";
-                            break;
-                        case 5:
-                            image = "images/products/Gift/" + pimage[i] + ",";
-                            break;
+
+            // Create the directory if it doesn't exist
+            String savePath = getServletContext().getRealPath("/") + "images/products/";
+            System.out.println(savePath);
+            File fileSaveDir = new File(savePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdirs();
+            }
+
+            // Process each uploaded file
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("image")) {
+                    String fileName = Paths.get(getSubmittedFileName(part)).getFileName().toString();
+                    String categoryFolder = getCategoryFolder(pcategory);
+                    String filePath = savePath + categoryFolder + File.separator + fileName;
+                    File file = new File(filePath);
+                    try (InputStream input = part.getInputStream()) {
+                        Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     }
-                }
-                if (image.endsWith(",")) {
-                    image = image.substring(0, image.length() - 1);
+                    imagePaths += "images/products/" + categoryFolder + "/" + fileName + ",";
                 }
             }
-            dao.editProduct(pname, image, pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory, pid);
+
+            // Remove trailing comma if present
+            if (imagePaths.endsWith(",")) {
+                imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
+            }
+
+            ProductDAO dao = new ProductDAO();
+            dao.editProduct(pname, imagePaths, pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory, pid);
+            
             request.setAttribute("mess", "Edit successfully!");
             request.getRequestDispatcher("manager").forward(request, response);
         } catch (NumberFormatException e) {
@@ -86,43 +82,40 @@ public class EditProductControl extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private String getCategoryFolder(int categoryID) {
+        switch (categoryID) {
+            case 1: return "Men";
+            case 2: return "Women";
+            case 3: return "Kids";
+            case 4: return "Unisex";
+            case 5: return "Gift";
+            default: return "Others";
+        }
+    }
+
+    private String getSubmittedFileName(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
