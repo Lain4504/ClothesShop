@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dal;
 
 import com.utils.DBContext;
@@ -16,10 +11,6 @@ import com.model.Category;
 import com.model.Product;
 import com.model.Supplier;
 
-/**
- *
- * @author Admin
- */
 public class ProductDAO extends DBContext {
 
     private CategoryDAO cd = new CategoryDAO();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dal;
 
 import com.utils.DBContext;
@@ -14,10 +9,6 @@ import java.util.List;
 import com.model.Spending;
 import com.model.User;
 
-/**
- *
- * @author Admin
- */
 public class UserDAO extends DBContext {
 
     public User check(String username, String password) {

@@ -1,10 +1,5 @@
 package com.filter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -25,10 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeFilter implements Filter {
 
     private static final boolean debug = true;
-
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
+ 
     private FilterConfig filterConfig = null;
 
     public HomeFilter() {
@@ -87,15 +79,6 @@ public class HomeFilter implements Filter {
          */
     }
 
-    /**
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
-     */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -138,18 +121,12 @@ public class HomeFilter implements Filter {
         }
     }
 
-    /**
-     * Return the filter configuration object for this filter.
-     */
+  
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
     }
 
-    /**
-     * Set the filter configuration object for this filter.
-     *
-     * @param filterConfig The filter configuration object
-     */
+
     public void setFilterConfig(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
