@@ -1,9 +1,9 @@
 package com.controller.admin.management.supplier;
 
-import com.dal.SupplierDAO;
-import com.dal.CategoryDAO;
 import com.model.Category;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.SupplierRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,8 +27,8 @@ public class ManagerSupplierServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        SupplierDAO daoS = new SupplierDAO();
-        CategoryDAO daoC = new CategoryDAO();
+        SupplierRepository daoS = new SupplierRepository();
+        CategoryRepository daoC = new CategoryRepository();
 
         List<Supplier> listAllSupplier = daoS.getAll();
 
@@ -43,8 +43,8 @@ public class ManagerSupplierServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("valueSearch");
-        SupplierDAO daoS = new SupplierDAO();
-        CategoryDAO daoC = new CategoryDAO();
+        SupplierRepository daoS = new SupplierRepository();
+        CategoryRepository daoC = new CategoryRepository();
 
         List<Supplier> listAllSupplier = daoS.getSuppliersBySearch(txtSearch);
         List<Category> listAllCategory = daoC.getAll();

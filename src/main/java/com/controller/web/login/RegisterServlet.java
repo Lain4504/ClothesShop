@@ -5,8 +5,6 @@
  */
 package com.controller.web.login;
 
-import com.dal.UserDAO;
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.model.User;
 import com.model.Wallet;
+import com.repository.UserRepository;
+import com.repository.WalletRepository;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
@@ -56,8 +56,8 @@ public class RegisterServlet extends HttpServlet {
         String uPho = request.getParameter("phone");
         String uEmail = request.getParameter("email");
         String birthDate = request.getParameter("dob");
-        UserDAO ud = new UserDAO();
-        WalletDAO wd = new WalletDAO();
+        UserRepository ud = new UserRepository();
+        WalletRepository wd = new WalletRepository();
         User user;
         Wallet wallet;
         String message = "Something wrong";

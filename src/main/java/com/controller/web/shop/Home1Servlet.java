@@ -1,7 +1,5 @@
 package com.controller.web.shop;
 
-import com.dal.CategoryDAO;
-import com.dal.ProductDAO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +10,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import com.model.Category;
 import com.model.Product;
+import com.repository.CategoryRepository;
+import com.repository.ProductRepository;
 
 
 @WebServlet(name = "Home1Servlet", urlPatterns = {"/home1"})
@@ -39,8 +39,8 @@ public class Home1Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        CategoryDAO d = new CategoryDAO();
-        ProductDAO p = new ProductDAO();
+        CategoryRepository d = new CategoryRepository();
+        ProductRepository p = new ProductRepository();
         List<Category> categories = d.getAll();
         List<Product> productsYear = p.getAll();
         Boolean[] chid = new Boolean[categories.size() + 1];

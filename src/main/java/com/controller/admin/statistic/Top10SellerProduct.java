@@ -1,7 +1,7 @@
 package com.controller.admin.statistic;
 
-import com.dal.ProductDAO;
 import com.model.Product;
+import com.repository.ProductRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Top10SellerProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ProductDAO dao = new ProductDAO();
+        ProductRepository dao = new ProductRepository();
         List<Product> list = dao.getTop10SellerProduct();
         int listTop10Product = list.size();
         

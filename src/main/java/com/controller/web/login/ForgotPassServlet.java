@@ -1,6 +1,5 @@
 package com.controller.web.login;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Random;
 import com.model.Email;
+import com.repository.UserRepository;
 
 @WebServlet(name = "ForgotPassServlet", urlPatterns = {"/forgot"})
 public class ForgotPassServlet extends HttpServlet {
@@ -45,7 +45,7 @@ public class ForgotPassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String emailInput = request.getParameter("email");
-        UserDAO ud = new UserDAO();
+        UserRepository ud = new UserRepository();
         Email handleEmail = new Email();
         String email = ud.checkEmailExist(emailInput);
         String message = "";

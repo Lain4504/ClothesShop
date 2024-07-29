@@ -1,7 +1,5 @@
 package com.controller.web.shop;
 
-import com.dal.CategoryDAO;
-import com.dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.model.Category;
 import com.model.Product;
+import com.repository.CategoryRepository;
+import com.repository.ProductRepository;
 
 @WebServlet(name = "RefineServlet", urlPatterns = {"/refine"})
 public class RefineServlet extends HttpServlet {
@@ -38,8 +38,8 @@ public class RefineServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDAO d = new CategoryDAO();
-        ProductDAO p = new ProductDAO();
+        CategoryRepository d = new CategoryRepository();
+        ProductRepository p = new ProductRepository();
         List<Category> categories = d.getAll();
         List<Product> allproduct = p.getAll();
         List<Product> productsCid = p.getAll();

@@ -174,6 +174,7 @@
                                             <tr class="product_items">
                                                 <td class="text_page">${o.id}</td>
                                                 <td style="max-width: 280px;" class="text_page">${o.name}</td>
+                                                
                                                 <td style="text-align: center">
                                                     <img style="width: 170px; height:180px" src="${o.image[0]}">
                                                 </td>

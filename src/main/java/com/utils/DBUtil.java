@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class DBContext {
+public class DBUtil {
     protected Connection connection;
-    public DBContext()
+    public DBUtil()
     {
         try {
             String url = "jdbc:sqlserver://localhost:1433;databaseName= Clothes_Website";

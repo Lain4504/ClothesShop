@@ -1,8 +1,6 @@
 
 package com.controller.admin.management.supplier;
 
-import com.dal.CategoryDAO;
-import com.dal.SupplierDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.Category;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.SupplierRepository;
 
 @WebServlet(name="ManageSearchSupplierServlet", urlPatterns={"/searchSupplier"})
 public class ManageSearchSupplierServlet extends HttpServlet {
@@ -42,8 +42,8 @@ public class ManageSearchSupplierServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
-        SupplierDAO daoS = new SupplierDAO();
-        CategoryDAO daoC = new CategoryDAO();
+        SupplierRepository daoS = new SupplierRepository();
+        CategoryRepository daoC = new CategoryRepository();
 
         List<Supplier> listAllSupplier = daoS.getSuppliersBySearch(txtSearch);
         List<Category> listAllCategory = daoC.getAll();

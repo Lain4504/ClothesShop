@@ -1,8 +1,5 @@
 package com.controller.admin.management.product;
 
-import com.dal.CategoryDAO;
-import com.dal.ProductDAO;
-import com.dal.SupplierDAO;
 import com.model.Category;
 import com.model.Product;
 import java.io.IOException;
@@ -13,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.ProductRepository;
+import com.repository.SupplierRepository;
 
 @WebServlet(name = "ManagerControl", urlPatterns = {"/manager"})
 public class ManagerProductServlet extends HttpServlet {
@@ -22,9 +22,9 @@ public class ManagerProductServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        ProductDAO daoP = new ProductDAO();
-        CategoryDAO daoC = new CategoryDAO();
-        SupplierDAO daoS = new SupplierDAO();
+        ProductRepository daoP = new ProductRepository();
+        CategoryRepository daoC = new CategoryRepository();
+        SupplierRepository daoS = new SupplierRepository();
         List<Product> list = daoP.getAll();
         List<Category> listC = daoC.getAll();
 
@@ -68,9 +68,9 @@ public class ManagerProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("valueSearch");
-        ProductDAO daoP = new ProductDAO();
-        CategoryDAO daoC = new CategoryDAO();
-        SupplierDAO daoS = new SupplierDAO();
+        ProductRepository daoP = new ProductRepository();
+        CategoryRepository daoC = new CategoryRepository();
+        SupplierRepository daoS = new SupplierRepository();
         List<Product> list = daoP.searchByName(txtSearch);
         List<Category> listC = daoC.getAll();
 

@@ -1,7 +1,6 @@
 
 package com.controller.web.shop;
 
-import com.dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.Category;
 import com.model.Product;
+import com.repository.ProductRepository;
 
 
 @WebServlet(name="SearchServlet", urlPatterns={"/search"})
@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
         String home_raw = request.getParameter("home");
-        ProductDAO dao = new ProductDAO();
+        ProductRepository dao = new ProductRepository();
         List<Product> list = dao.searchByName(txtSearch);
         int home;
         if(home_raw != null) {

@@ -1,6 +1,6 @@
-package com.dal;
+package com.repository;
 
-import com.utils.DBContext;
+import com.utils.DBUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import com.model.User;
 import com.model.Wallet;
 
-public class WalletDAO extends DBContext {
+public class WalletRepository extends DBUtil {
 
     //
     public int getNumberWallets() {

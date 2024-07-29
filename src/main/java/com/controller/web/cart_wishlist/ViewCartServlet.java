@@ -1,8 +1,5 @@
 package com.controller.web.cart_wishlist;
 
-import com.dal.OrderDAO;
-import com.dal.ProductDAO;
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,6 +16,9 @@ import com.model.Item;
 import com.model.Order;
 import com.model.User;
 import com.model.Wallet;
+import com.repository.OrderRepository;
+import com.repository.ProductRepository;
+import com.repository.WalletRepository;
 
 @WebServlet(name = "ViewCartServlet", urlPatterns = {"/viewcart"})
 public class ViewCartServlet extends HttpServlet {
@@ -79,9 +79,9 @@ public class ViewCartServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("account");
         Wallet wallet = (Wallet) session.getAttribute("wallet");
-        OrderDAO od = new OrderDAO();
-        ProductDAO pd = new ProductDAO();
-        WalletDAO wd = new WalletDAO();
+        OrderRepository od = new OrderRepository();
+        ProductRepository pd = new ProductRepository();
+        WalletRepository wd = new WalletRepository();
         double amount = wallet.getBalance();
         double totalCart = cart.getTotalMoney();
         String msg1 = "";

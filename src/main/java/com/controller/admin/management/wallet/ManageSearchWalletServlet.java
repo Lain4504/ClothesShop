@@ -1,8 +1,6 @@
 
 package com.controller.admin.management.wallet;
 
-import com.dal.UserDAO;
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.User;
 import com.model.Wallet;
+import com.repository.UserRepository;
+import com.repository.WalletRepository;
 
 @WebServlet(name="ManageSearchWalletServlet", urlPatterns={"/searchWallet"})
 public class ManageSearchWalletServlet extends HttpServlet {
@@ -40,7 +40,7 @@ public class ManageSearchWalletServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
-        WalletDAO dao = new WalletDAO();
+        WalletRepository dao = new WalletRepository();
 
         List<Wallet> list = dao.getWalletBySearchName(txtSearch);
 

@@ -1,6 +1,6 @@
-package com.dal;
+package com.repository;
 
-import com.utils.DBContext;
+import com.utils.DBUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ import com.model.Order;
 import com.model.User;
 
 
-public class OrderDAO extends DBContext {
+public class OrderRepository extends DBUtil {
 
     //
     public int getNumberOrders() {
@@ -31,7 +31,7 @@ public class OrderDAO extends DBContext {
     }
 
     public void addOrder(User cus, Cart cart) {
-        ProductDAO pd = new ProductDAO();
+        ProductRepository pd = new ProductRepository();
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
         try {
@@ -169,7 +169,7 @@ public class OrderDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        OrderDAO dao = new OrderDAO();
+        OrderRepository dao = new OrderRepository();
         double a = dao.totalMoneyWeek(6, 27, 3, 2023, 11);
         System.out.println(a);
     }

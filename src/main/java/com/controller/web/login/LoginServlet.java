@@ -1,7 +1,5 @@
 package com.controller.web.login;
 
-import com.dal.UserDAO;
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
 import com.model.Wallet;
+import com.repository.UserRepository;
+import com.repository.WalletRepository;
 
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
@@ -64,8 +64,8 @@ public class LoginServlet extends HttpServlet {
         String uName = request.getParameter("username");
         String uPass = request.getParameter("password");
         String remember = request.getParameter("remember");
-        UserDAO ud = new UserDAO();
-        WalletDAO wd = new WalletDAO();
+        UserRepository ud = new UserRepository();
+        WalletRepository wd = new WalletRepository();
         
         User user = ud.check(uName, uPass);
         HttpSession session = request.getSession();

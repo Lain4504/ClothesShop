@@ -1,7 +1,6 @@
 
 package com.controller.web.profile;
 
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.Wallet;
+import com.repository.WalletRepository;
 
 @WebServlet(name="WalletServlet", urlPatterns={"/wallet"})
 public class WalletServlet extends HttpServlet {
@@ -43,7 +43,7 @@ public class WalletServlet extends HttpServlet {
             value = Double.parseDouble(valueStr);
         } catch (Exception e) {
         }
-        WalletDAO wd = new WalletDAO();
+        WalletRepository wd = new WalletRepository();
         // udate amount
         wd.inputMoney(userName, value);
         Wallet wallet = wd.getWalletByUserName(userName);

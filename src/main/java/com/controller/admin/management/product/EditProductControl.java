@@ -1,11 +1,9 @@
 package com.controller.admin.management.product;
 
-import com.dal.ProductDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.servlet.ServletException;
@@ -15,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.repository.ProductRepository;
 
 @WebServlet(name = "EditProductControl", urlPatterns = {"/editproduct"})
 @MultipartConfig
@@ -72,7 +72,7 @@ public class EditProductControl extends HttpServlet {
                 imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
             }
 
-            ProductDAO dao = new ProductDAO();
+            ProductRepository dao = new ProductRepository();
             dao.editProduct(pname, imagePaths, pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory, pid);
             
             request.setAttribute("mess", "Edit successfully!");

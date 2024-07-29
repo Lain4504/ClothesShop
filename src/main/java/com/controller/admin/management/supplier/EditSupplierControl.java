@@ -1,7 +1,5 @@
 package com.controller.admin.management.supplier;
 
-import com.dal.CategoryDAO;
-import com.dal.SupplierDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.Category;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.SupplierRepository;
 
 @WebServlet(name = "EditSupplierControl", urlPatterns = {"/editsupplier"})
 public class EditSupplierControl extends HttpServlet {
@@ -27,8 +27,8 @@ public class EditSupplierControl extends HttpServlet {
         String phone = request.getParameter("phone");
         String homepage = request.getParameter("homepage");
         
-        SupplierDAO daoS = new SupplierDAO();
-        CategoryDAO daoC = new CategoryDAO();
+        SupplierRepository daoS = new SupplierRepository();
+        CategoryRepository daoC = new CategoryRepository();
         int id = Integer.parseInt(sid_raw);
         daoS.editSupplier(id, companyName, contactName, country, phone, homepage);
         List<Supplier> listAllSupplier = daoS.getAll();

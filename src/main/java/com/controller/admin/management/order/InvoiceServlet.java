@@ -1,7 +1,5 @@
 package com.controller.admin.management.order;
 
-import com.dal.OrderDAO;
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -11,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.model.Order;
 import com.model.User;
+import com.repository.OrderRepository;
+import com.repository.UserRepository;
 
 
 @WebServlet(name = "InvoiceServlet", urlPatterns = {"/invoice"})
@@ -21,8 +21,8 @@ public class InvoiceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
       
-        OrderDAO dao = new OrderDAO();
-        UserDAO dao2 = new UserDAO();
+        OrderRepository dao = new OrderRepository();
+        UserRepository dao2 = new UserRepository();
       
         
 

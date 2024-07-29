@@ -1,7 +1,5 @@
 package com.controller.admin.management.supplier;
 
-import com.dal.CategoryDAO;
-import com.dal.SupplierDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.SupplierRepository;
 
 @WebServlet(name = "AddSupplierControl", urlPatterns = {"/addsupplier"})
 public class AddSupplierControl extends HttpServlet {
@@ -17,7 +17,7 @@ public class AddSupplierControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        SupplierDAO sd = new SupplierDAO();
+        SupplierRepository sd = new SupplierRepository();
 
         String CompanyName = request.getParameter("CompanyName");
         String ContactName = request.getParameter("ContactName");

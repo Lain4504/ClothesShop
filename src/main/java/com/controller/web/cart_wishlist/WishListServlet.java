@@ -1,7 +1,6 @@
 
 package com.controller.web.cart_wishlist;
 
-import com.dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import java.util.List;
 import com.model.Cart;
 import com.model.Item;
 import com.model.Product;
+import com.repository.ProductRepository;
 
 
 @WebServlet(name="WishListServlet", urlPatterns={"/wishlist"})
@@ -43,7 +43,7 @@ public class WishListServlet extends HttpServlet {
         HttpSession session = request.getSession();
          // Phan wishlist
         Cart wishList = null;
-        ProductDAO pd = new ProductDAO();
+        ProductRepository pd = new ProductRepository();
         Object w = session.getAttribute("wishList");
         // Check
         if (w != null) {

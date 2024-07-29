@@ -1,7 +1,8 @@
 package com.model;
 
-import com.dal.ProductDAO;
 import java.util.List;
+
+import com.repository.ProductRepository;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Category {
 
     public int getTotalProduct() {
         int total = 0;
-        ProductDAO p = new ProductDAO();
+        ProductRepository p = new ProductRepository();
         List<Product> list = p.getProductsByCategoryid(this.id);
         for (int i = 0; i < list.size(); i++) {
             total += 1;

@@ -1,6 +1,5 @@
 package com.controller.web.login;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.repository.UserRepository;
 
 
 @WebServlet(name = "ConfirmResetCodeServlet", urlPatterns = {"/confirmresetcode"})
@@ -43,7 +44,7 @@ public class ConfirmResetCodeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        UserDAO ud = new UserDAO();
+        UserRepository ud = new UserRepository();
         String resetCode = request.getParameter("resetcode");
         String code = (String) session.getAttribute("code");
         String email = request.getParameter("email");

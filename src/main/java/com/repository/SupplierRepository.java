@@ -1,6 +1,6 @@
-package com.dal;
+package com.repository;
 
-import com.utils.DBContext;
+import com.utils.DBUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.model.Supplier;
 
-public class SupplierDAO extends DBContext {
+public class SupplierRepository extends DBUtil {
 
     public List<Supplier> getAll() {
         List<Supplier> list = new ArrayList<>();
@@ -115,7 +115,7 @@ public class SupplierDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        SupplierDAO p = new SupplierDAO();
+        SupplierRepository p = new SupplierRepository();
         p.deleteSupplier(1);
         List<Supplier> list = p.getAll();
 

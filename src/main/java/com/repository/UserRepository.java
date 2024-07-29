@@ -1,6 +1,6 @@
-package com.dal;
+package com.repository;
 
-import com.utils.DBContext;
+import com.utils.DBUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.util.List;
 import com.model.Spending;
 import com.model.User;
 
-public class UserDAO extends DBContext {
+public class UserRepository extends DBUtil {
 
     public User check(String username, String password) {
         String sql = "SELECT * FROM Users WHERE userName = ? and password = ? and [status] = 1";
@@ -238,7 +238,7 @@ public class UserDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        UserDAO p = new UserDAO();
+        UserRepository p = new UserRepository();
         p.insertUser("duc", "thanh", "123",
              2, "thanh@gmail.com", "2003-09-08", "4012412341");
         List<User> list = p.getAllUsers();

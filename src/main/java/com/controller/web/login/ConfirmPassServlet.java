@@ -1,6 +1,5 @@
 package com.controller.web.login;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
+import com.repository.UserRepository;
 
 @WebServlet(name = "ConfirmPassServlet", urlPatterns = {"/confirmpass"})
 public class ConfirmPassServlet extends HttpServlet {
@@ -45,7 +45,7 @@ public class ConfirmPassServlet extends HttpServlet {
         String cfnewpass = request.getParameter("cfpassword");
         String username = request.getParameter("userName");
         String msg = "";
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
         User a = dao.getUserByUserName(username);
         if (cfnewpass.equals(newpass)) {
             dao.updatePassByUserName(newpass, username);

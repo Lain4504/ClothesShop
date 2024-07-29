@@ -1,6 +1,5 @@
 package com.controller.admin.management.wallet;
 
-import com.dal.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.repository.WalletRepository;
 
 @WebServlet(name = "AddBalanceServlet", urlPatterns = {"/addbalance"})
 public class AddBalanceServlet extends HttpServlet {
@@ -17,7 +18,7 @@ public class AddBalanceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String balance_raw = request.getParameter("balance");
         String userName = request.getParameter("userName");
-        WalletDAO dao = new WalletDAO();
+        WalletRepository dao = new WalletRepository();
         double balance;
         try {
             balance = Double.parseDouble(balance_raw);

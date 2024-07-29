@@ -1,6 +1,5 @@
 package com.controller.admin.management.account;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
+import com.repository.UserRepository;
 
 @WebServlet(name = "DeleteAccountControl", urlPatterns = {"/deleteaccount"})
 public class DeleteAccountControl extends HttpServlet {
@@ -29,7 +29,7 @@ public class DeleteAccountControl extends HttpServlet {
         HttpSession session = request.getSession();
         User userss = (User) session.getAttribute("account");
         String at = request.getParameter("at");
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
         String msg = "";
         if (username != null) {
             dao.deleteUser(username);

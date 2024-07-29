@@ -1,6 +1,5 @@
 package com.controller.admin.management.product;
 
-import com.dal.ProductDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import com.model.Cart;
 import com.model.Item;
+import com.repository.ProductRepository;
 
 @WebServlet(name = "DeleteProductControl", urlPatterns = {"/deleteproduct"})
 public class DeleteProductControl extends HttpServlet {
@@ -28,7 +28,7 @@ public class DeleteProductControl extends HttpServlet {
             cart = new Cart();
         }
         String pid = request.getParameter("pid");
-        ProductDAO dao = new ProductDAO();
+        ProductRepository dao = new ProductRepository();
         int id = Integer.parseInt(pid);
         String msg = "";
 //        dao.deleteCartByProductID(pid);

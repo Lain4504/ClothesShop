@@ -1,6 +1,5 @@
 package com.controller.web.profile;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
+import com.repository.UserRepository;
 
 
 @WebServlet(name = "ProfileServlet", urlPatterns = {"/profile"})
@@ -35,7 +35,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO ud = new UserDAO();
+        UserRepository ud = new UserRepository();
         String imageUpdate = request.getParameter("imagelink");
         String userId = request.getParameter("uid");
         String link = "";
@@ -71,7 +71,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAO u = new UserDAO();
+        UserRepository u = new UserRepository();
         String name = request.getParameter("name");
         String username = request.getParameter("username");
         String address = request.getParameter("address");

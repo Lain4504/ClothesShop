@@ -1,6 +1,6 @@
-package com.dal;
+package com.repository;
 
-import com.utils.DBContext;
+import com.utils.DBUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,10 +11,10 @@ import com.model.Category;
 import com.model.Product;
 import com.model.Supplier;
 
-public class ProductDAO extends DBContext {
+public class ProductRepository extends DBUtil {
 
-    private CategoryDAO cd = new CategoryDAO();
-    private SupplierDAO sd = new SupplierDAO();
+    private CategoryRepository cd = new CategoryRepository();
+    private SupplierRepository sd = new SupplierRepository();
     private DecimalFormat df = new DecimalFormat("###.##");
 
     public List<Product> getAll() {
@@ -743,7 +743,7 @@ public class ProductDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        ProductDAO p = new ProductDAO();
+        ProductRepository p = new ProductRepository();
         int[] a = {0};
         p.editProduct("tat", "", 1, "", 1, "10ml", "2019-10-10", 0, 1, 1, 1);
         List<Product> list = p.getAll();

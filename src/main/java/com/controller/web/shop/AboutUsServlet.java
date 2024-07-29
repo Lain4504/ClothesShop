@@ -1,6 +1,5 @@
 package com.controller.web.shop;
 
-import com.dal.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.Category;
+import com.repository.CategoryRepository;
 
 @WebServlet(name = "AboutUsServlet", urlPatterns = {"/aboutus"})
 public class AboutUsServlet extends HttpServlet {
@@ -34,7 +34,7 @@ public class AboutUsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDAO d = new CategoryDAO();
+        CategoryRepository d = new CategoryRepository();
         List<Category> categories = d.getAll();
         request.setAttribute("category", categories);
         request.getRequestDispatcher("about_us.jsp").forward(request, response);

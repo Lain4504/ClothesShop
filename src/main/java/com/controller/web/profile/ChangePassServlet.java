@@ -1,6 +1,5 @@
 package com.controller.web.profile;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
+import com.repository.UserRepository;
 
 @WebServlet(name = "ChangePassServlet", urlPatterns = {"/changepass"})
 public class ChangePassServlet extends HttpServlet {
@@ -46,7 +46,7 @@ public class ChangePassServlet extends HttpServlet {
         String cfnewpass = request.getParameter("cfnewpass");
         String username = request.getParameter("username");
         String msg = "";
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
         User a = dao.check(username, oldpass);
         if (a == null) {
             msg = "Old password is incorrect";

@@ -1,7 +1,8 @@
 package com.controller.admin.management.account;
 
-import com.dal.UserDAO;
 import com.model.User;
+import com.repository.UserRepository;
+
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class ManagerAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("valueSearch");
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
 
         List<User> list = dao.getUsersBySearchName(txtSearch);
 
@@ -37,7 +38,7 @@ public class ManagerAccountServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("account");
         String userName = a.getUserName();
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
 
         List<User> list = dao.getAllUsers();
 
@@ -52,7 +53,7 @@ public class ManagerAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("valueSearch");
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
 
         List<User> list = dao.getUsersBySearchName(txtSearch);
 

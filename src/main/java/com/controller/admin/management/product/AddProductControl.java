@@ -10,7 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-import com.dal.ProductDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.repository.ProductRepository;
 
 @WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
 @MultipartConfig
@@ -34,7 +36,7 @@ public class AddProductControl extends HttpServlet {
         String pdiscount_raw = request.getParameter("discount");
         String psupplier_raw = request.getParameter("supplier");
         String pcategory_raw = request.getParameter("category");
-        
+        // AdsModelRequest tương đương với những dòng trên
         double pprice, pdiscount;
         int pquantity, psupplier, pcategory;
         String imagePaths = "";
@@ -45,15 +47,16 @@ public class AddProductControl extends HttpServlet {
             pquantity = Integer.parseInt(pquantity_raw);
             psupplier = Integer.parseInt(psupplier_raw);
             pcategory = Integer.parseInt(pcategory_raw);
-
+        // những dòng này tương đương với service??
             // Create the directory if it doesn't exist
             String savePath = getServletContext().getRealPath("/") + "images/products/";
             System.out.println(savePath);
+            // tạo path như trong class FileUtil.
             File fileSaveDir = new File(savePath);
             if (!fileSaveDir.exists()) {
                 fileSaveDir.mkdirs();
             }
-
+            // Đây là phương thức đầu tiên của FileUtil, getFolderUpLoad
             // Process each uploaded file
             for (Part part : request.getParts()) {
                 if (part.getName().equals("image")) {
@@ -73,7 +76,7 @@ public class AddProductControl extends HttpServlet {
                 imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
             }
 
-            ProductDAO dao = new ProductDAO();
+            ProductRepository dao = new ProductRepository();
             dao.insertProduct(pname, imagePaths, pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory);
         } catch (NumberFormatException e) {
             System.out.println(e);

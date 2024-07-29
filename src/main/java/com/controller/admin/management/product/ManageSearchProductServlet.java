@@ -1,9 +1,6 @@
 
 package com.controller.admin.management.product;
 
-import com.dal.CategoryDAO;
-import com.dal.ProductDAO;
-import com.dal.SupplierDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,6 +12,9 @@ import java.util.List;
 import com.model.Category;
 import com.model.Product;
 import com.model.Supplier;
+import com.repository.CategoryRepository;
+import com.repository.ProductRepository;
+import com.repository.SupplierRepository;
 
 
 @WebServlet(name="ManageSearchProductServlet", urlPatterns={"/searchProduct"})
@@ -44,9 +44,9 @@ public class ManageSearchProductServlet extends HttpServlet {
          response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
-        ProductDAO daoP = new ProductDAO();
-        CategoryDAO daoC = new CategoryDAO();
-        SupplierDAO daoS = new SupplierDAO();
+        ProductRepository daoP = new ProductRepository();
+        CategoryRepository daoC = new CategoryRepository();
+        SupplierRepository daoS = new SupplierRepository();
         List<Product> list = daoP.searchByName(txtSearch);
         List<Category> listC = daoC.getAll();
 

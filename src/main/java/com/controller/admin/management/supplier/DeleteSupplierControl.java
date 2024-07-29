@@ -1,12 +1,13 @@
 package com.controller.admin.management.supplier;
 
-import com.dal.SupplierDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.repository.SupplierRepository;
 
 @WebServlet(name = "DeleteSupplier", urlPatterns = {"/deletesupplier"})
 public class DeleteSupplierControl extends HttpServlet {
@@ -16,7 +17,7 @@ public class DeleteSupplierControl extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String idSupplier_raw = request.getParameter("sid");
-        SupplierDAO dao = new SupplierDAO();
+        SupplierRepository dao = new SupplierRepository();
         String msg = "";
         int idSup;
         try {

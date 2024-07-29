@@ -5,8 +5,6 @@
  */
 package com.controller.web.shop;
 
-import com.dal.CategoryDAO;
-import com.dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.model.Category;
 import com.model.Product;
+import com.repository.CategoryRepository;
+import com.repository.ProductRepository;
 
 //@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
@@ -41,8 +41,8 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDAO d = new CategoryDAO();
-        ProductDAO p = new ProductDAO();
+        CategoryRepository d = new CategoryRepository();
+        ProductRepository p = new ProductRepository();
         List<Category> categories = d.getAll();
         List<Product> productsYear = p.getAll();
         List<Product> productsTop5Sellers = p.getTopBestSellers("5");

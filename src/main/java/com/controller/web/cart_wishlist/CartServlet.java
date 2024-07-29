@@ -1,6 +1,5 @@
 package com.controller.web.cart_wishlist;
 
-import com.dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +12,7 @@ import java.util.List;
 import com.model.Cart;
 import com.model.Item;
 import com.model.Product;
+import com.repository.ProductRepository;
 
 @WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
 public class CartServlet extends HttpServlet {
@@ -51,7 +51,7 @@ public class CartServlet extends HttpServlet {
             cart = new Cart();
         }
 
-        ProductDAO pd = new ProductDAO();
+        ProductRepository pd = new ProductRepository();
 
         String role = request.getParameter("role");
         switch (role) {

@@ -1,15 +1,16 @@
 package com.controller.admin.statistic;
 
-import com.dal.ProductDAO;
-import com.dal.OrderDAO;
-import com.dal.SupplierDAO;
-import com.dal.UserDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.repository.OrderRepository;
+import com.repository.ProductRepository;
+import com.repository.SupplierRepository;
+import com.repository.UserRepository;
 
 @WebServlet(name = "DashBoardServlet", urlPatterns = {"/admin"})
 public class DashBoardServlet extends HttpServlet {
@@ -25,10 +26,10 @@ public class DashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
-        ProductDAO dao = new ProductDAO();
-        UserDAO udao = new UserDAO();
-        OrderDAO odao = new OrderDAO();
-       SupplierDAO sdao = new SupplierDAO();
+        ProductRepository dao = new ProductRepository();
+        UserRepository udao = new UserRepository();
+        OrderRepository odao = new OrderRepository();
+       SupplierRepository sdao = new SupplierRepository();
         int count = dao.countAllProduct();
         int countS = dao.countAllTypeProduct();
         int countu = udao.countAllUser();

@@ -1,7 +1,7 @@
 package com.controller.admin.statistic;
 
-import com.dal.UserDAO;
 import com.model.User;
+import com.repository.UserRepository;
 import com.model.Order;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class Top5Customer extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
       
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
 
         List<User> listAllAccount = dao.getAllUsers();
         List<Spending> listTop5CustomerSpending = dao.getTop5Customers();

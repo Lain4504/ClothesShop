@@ -1,7 +1,8 @@
 package com.controller.admin.management.account;
 
-import com.dal.UserDAO;
 import com.model.User;
+import com.repository.UserRepository;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +29,7 @@ public class AddAccountControl extends HttpServlet {
         String BirthDay = request.getParameter("birthdate");
         int roleId = (roleId_raw == null ? 2 : Integer.parseInt(roleId_raw));
         String msg = "";
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
         boolean check = dao.checkUserNameDuplicate(UserName);
         if (check) {
             msg = "Username already exist!";

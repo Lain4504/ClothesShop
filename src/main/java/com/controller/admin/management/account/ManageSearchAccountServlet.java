@@ -1,7 +1,6 @@
 
 package com.controller.admin.management.account;
 
-import com.dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import com.model.User;
+import com.repository.UserRepository;
 
 @WebServlet(name="ManageSearchAccount", urlPatterns={"/searchAccount"})
 public class ManageSearchAccountServlet extends HttpServlet {
@@ -40,7 +40,7 @@ public class ManageSearchAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
-        UserDAO dao = new UserDAO();
+        UserRepository dao = new UserRepository();
 
         List<User> list = dao.getUsersBySearchName(txtSearch);
 
