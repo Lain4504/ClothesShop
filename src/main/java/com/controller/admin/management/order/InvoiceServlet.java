@@ -7,10 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.model.Order;
+
 import com.model.User;
-import com.repository.OrderRepository;
 import com.repository.UserRepository;
+
+// file xóa
+import com.model.Order;
+import com.repository.OrderRepository;
 
 
 @WebServlet(name = "InvoiceServlet", urlPatterns = {"/invoice"})

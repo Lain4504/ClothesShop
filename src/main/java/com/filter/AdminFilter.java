@@ -15,10 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.model.User;
 
-/**
- *
- * @author Admin
- */
 public class AdminFilter implements Filter {
 
     private static final boolean debug = true;

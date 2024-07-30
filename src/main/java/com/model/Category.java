@@ -4,10 +4,6 @@ import java.util.List;
 
 import com.repository.ProductRepository;
 
-/**
- *
- * @author ADMIN
- */
 public class Category {
 
     private int id;

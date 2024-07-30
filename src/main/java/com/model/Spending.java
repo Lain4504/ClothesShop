@@ -1,9 +1,5 @@
 package com.model;
 
-/**
- *
- * @author Admin
- */
 public class Spending {
 
     private User user;

@@ -217,73 +217,8 @@ public class ProductRepository extends DBUtil {
         return null;
     }
 
-    // 5> List product show in footer => random sp
-    public List<Product> getFeaturedProducts() {
-        List<Product> list = new ArrayList<>();
-        String sql = "SELECT TOP 3 * FROM Products ORDER BY NEWID()";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                String image = rs.getString("image");
-                String[] images = image.split(",");
-                Category c = cd.getCategoryById(rs.getInt("CategoryID"));
-                Supplier s = sd.getSupplierById(rs.getInt("SupplierID"));
-                double salePrice = getSalePrice(rs.getDouble("UnitPrice"), rs.getDouble("Discount"));
-                Product p = new Product(
-                        rs.getString("ProductName"),
-                        images,
-                        rs.getString("describe"),
-                        rs.getString("QuantityPerUnit"),
-                        rs.getInt("ProductID"),
-                        rs.getInt("UnitsInStock"),
-                        rs.getInt("StarRating"),
-                        rs.getDouble("UnitPrice"),
-                        rs.getDouble("Discount"),
-                        salePrice,
-                        rs.getDate("releaseDate"),
-                        c, s);
-                list.add(p);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+    
 
-    // 6> List gift set 
-    public List<Product> getGiflSets() {
-        List<Product> list = new ArrayList<>();
-        String sql = "SELECT * FROM Products WHERE CategoryID = 5";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                String image = rs.getString("image");
-                String[] images = image.split(",");
-                Category c = cd.getCategoryById(rs.getInt("CategoryID"));
-                Supplier s = sd.getSupplierById(rs.getInt("SupplierID"));
-                double salePrice = getSalePrice(rs.getDouble("UnitPrice"), rs.getDouble("Discount"));
-                Product p = new Product(
-                        rs.getString("ProductName"),
-                        images,
-                        rs.getString("describe"),
-                        rs.getString("QuantityPerUnit"),
-                        rs.getInt("ProductID"),
-                        rs.getInt("UnitsInStock"),
-                        rs.getInt("StarRating"),
-                        rs.getDouble("UnitPrice"),
-                        rs.getDouble("Discount"),
-                        salePrice,
-                        rs.getDate("releaseDate"),
-                        c, s);
-                list.add(p);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
 
     public List<Product> getListByPage(List<Product> list, int start, int end) {
         ArrayList<Product> arr = new ArrayList<>();

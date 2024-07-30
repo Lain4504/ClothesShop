@@ -90,20 +90,19 @@ CREATE TABLE Wallets (
 GO
 
 -- Insert initial data
-INSERT INTO Categories (CategoryName, Description) VALUES 
-(N'Áo khoác', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Áo Polo', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Áo Sơmi', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Sweater', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Áo thun', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Quần dài', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Quần jean', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Quần ngắn', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Ba lô', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Mũ', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit'),
-(N'Tất', N'Lorem ipsum dolor sit amet, consectetur adipiscing elit');
-GO
 
+
+INSERT INTO Categories (CategoryName, Description) VALUES 
+(N'Jackets', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Polo Shirts', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Dress Shirts', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Sweater', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'T-Shirts', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Long Pants', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Jeans', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Short Pants', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.'),
+(N'Accessories', N'Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.');
+GO
 
 
 -- Insert data into Suppliers
