@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.repository.ProductRepository;
+import com.utils.FileUtil;
 
 @WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
 @MultipartConfig
@@ -36,10 +37,9 @@ public class AddProductControl extends HttpServlet {
         String pdiscount_raw = request.getParameter("discount");
         String psupplier_raw = request.getParameter("supplier");
         String pcategory_raw = request.getParameter("category");
-        // AdsModelRequest tương đương với những dòng trên
         double pprice, pdiscount;
         int pquantity, psupplier, pcategory;
-        String imagePaths = "";
+        StringBuilder imagePaths = new StringBuilder();
         
         try {
             pprice = Double.parseDouble(pprice_raw);
@@ -47,39 +47,34 @@ public class AddProductControl extends HttpServlet {
             pquantity = Integer.parseInt(pquantity_raw);
             psupplier = Integer.parseInt(psupplier_raw);
             pcategory = Integer.parseInt(pcategory_raw);
-        // những dòng này tương đương với service??
-            // Create the directory if it doesn't exist
-            String savePath = getServletContext().getRealPath("/") + "images/products/";
-            System.out.println(savePath);
-            // tạo path như trong class FileUtil.
-            File fileSaveDir = new File(savePath);
+
+            // Specify the save path
+            String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+            String categoryFolder = getCategoryFolder(pcategory);
+            File fileSaveDir = new File(savePath + categoryFolder);
+
+            // Ensure the directory exists
             if (!fileSaveDir.exists()) {
                 fileSaveDir.mkdirs();
             }
-            // Đây là phương thức đầu tiên của FileUtil, getFolderUpLoad
+
             // Process each uploaded file
             for (Part part : request.getParts()) {
                 if (part.getName().equals("image")) {
-                    String fileName = Paths.get(getSubmittedFileName(part)).getFileName().toString();
-                    String categoryFolder = getCategoryFolder(pcategory);
-                    String filePath = savePath + categoryFolder + File.separator + fileName;
-                    File file = new File(filePath);
-                    try (InputStream input = part.getInputStream()) {
-                        Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    }
-                    imagePaths += "images/products/" + categoryFolder + "/" + fileName + ",";
+                    String fileName = FileUtil.saveFile(part, fileSaveDir.getAbsolutePath());
+                    imagePaths.append("images/products/").append(categoryFolder).append("/").append(fileName).append(",");
                 }
             }
 
             // Remove trailing comma if present
-            if (imagePaths.endsWith(",")) {
-                imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
+            if (imagePaths.length() > 0 && imagePaths.charAt(imagePaths.length() - 1) == ',') {
+                imagePaths.setLength(imagePaths.length() - 1);
             }
 
             ProductRepository dao = new ProductRepository();
-            dao.insertProduct(pname, imagePaths, pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory);
+            dao.insertProduct(pname, imagePaths.toString(), pprice, pdescribe, pquantity, pquantityunit, pdate, pdiscount, psupplier, pcategory);
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         
         request.setAttribute("mess", "Product Added!");
@@ -95,15 +90,6 @@ public class AddProductControl extends HttpServlet {
             case 5: return "Gift";
             default: return "Others";
         }
-    }
-
-    private String getSubmittedFileName(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
     }
 
     @Override
@@ -123,3 +109,4 @@ public class AddProductControl extends HttpServlet {
         return "Short description";
     }
 }
+

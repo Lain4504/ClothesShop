@@ -16,7 +16,23 @@ public class ProductRepository extends DBUtil {
     private CategoryRepository cd = new CategoryRepository();
     private SupplierRepository sd = new SupplierRepository();
     private DecimalFormat df = new DecimalFormat("###.##");
+    public String getImagePathsByProductId(int productId) {
+        String imagePaths = "";
+        String query = "SELECT image_paths FROM products WHERE product_id = ?";
 
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, productId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    imagePaths = rs.getString("image_paths");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return imagePaths;
+    }
     public List<Product> getAll() {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[Products]";

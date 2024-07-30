@@ -15,10 +15,23 @@
 					<release>19</release>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.3</version>
-			</plugin>
+			 <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.2.3</version>
+            <configuration>
+                <webResources>
+                    <resource>
+                        <directory>src/main/webapp</directory>
+                        <includes>
+                            <include>**/*.jpg</include>
+                            <include>**/*.png</include>
+                            <include>**/*.gif</include>
+                        </includes>
+                    </resource>
+                </webResources>
+            </configuration>
+        </plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -59,6 +72,22 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.16.1</version>
 		</dependency>
-
+<!-- json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<!--end json -->
 	</dependencies>
 </project>
