@@ -6,12 +6,22 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ResourceBundle;
 import java.util.UUID;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FilenameUtils;
 
 public class FileUtil {
-
+	public static File getFolderUpload(String savePath, String categoryFolder) {
+		// Set resource name want to get value (application.properties).
+		File folderUpload = new File(savePath + categoryFolder);
+		// Check folder is exists.
+		if (!folderUpload.exists()) {
+			// If not exists will create new folder.
+			folderUpload.mkdirs();
+		}
+		return folderUpload;
+	}
     public static String saveFile(Part file, String saveDir) throws IOException {
         // Get origin filename from request.
         String originFileName = file.getSubmittedFileName();
@@ -31,4 +41,5 @@ public class FileUtil {
         }
         return outputFileName;
     }
+    
 }

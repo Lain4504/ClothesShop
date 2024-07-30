@@ -49,14 +49,9 @@ public class AddProductControl extends HttpServlet {
             pcategory = Integer.parseInt(pcategory_raw);
 
             // Specify the save path
-            String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+            String savePath = getServletContext().getRealPath("/") + "images/products/";
             String categoryFolder = getCategoryFolder(pcategory);
-            File fileSaveDir = new File(savePath + categoryFolder);
-
-            // Ensure the directory exists
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdirs();
-            }
+            File fileSaveDir = FileUtil.getFolderUpload(savePath, categoryFolder);
 
             // Process each uploaded file
             for (Part part : request.getParts()) {

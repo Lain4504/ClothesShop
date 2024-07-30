@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.repository.ProductRepository;
+import com.utils.FileUtil;
 
 @WebServlet(name = "EditProductControl", urlPatterns = {"/editproduct"})
 @MultipartConfig
@@ -47,22 +48,20 @@ public class EditProductControl extends HttpServlet {
 
             // Create the directory if it doesn't exist
             String savePath = getServletContext().getRealPath("/") + "images/products/";
-            System.out.println(savePath);
-            File fileSaveDir = new File(savePath);
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdirs();
-            }
+           // String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+           //Thay thế để xem bug. Tạo thử một cái product bằng dòng getServletContext() trước. 
+            //Sau đó tạo một cái product bằng dòng dưới, ko hiển thị ảnh thì vào một file bất kỳ, gõ bậy mấy cái rồi ctrl+s, 
+            //sau đó ctrl+z xóa mấy cái gõ bậy rồi ctrl+s lại là nó hiển thị được
+
+            String categoryFolder = getCategoryFolder(pcategory);
+            File fileSaveDir = FileUtil.getFolderUpload(savePath, categoryFolder);
+
 
             // Process each uploaded file
+         // Process each uploaded file
             for (Part part : request.getParts()) {
                 if (part.getName().equals("image")) {
-                    String fileName = Paths.get(getSubmittedFileName(part)).getFileName().toString();
-                    String categoryFolder = getCategoryFolder(pcategory);
-                    String filePath = savePath + categoryFolder + File.separator + fileName;
-                    File file = new File(filePath);
-                    try (InputStream input = part.getInputStream()) {
-                        Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    }
+                    String fileName = FileUtil.saveFile(part, fileSaveDir.getAbsolutePath());
                     imagePaths += "images/products/" + categoryFolder + "/" + fileName + ",";
                 }
             }
@@ -114,8 +113,5 @@ public class EditProductControl extends HttpServlet {
         processRequest(request, response);
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+  
 }
