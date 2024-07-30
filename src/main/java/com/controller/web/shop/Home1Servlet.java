@@ -45,12 +45,9 @@ public class Home1Servlet extends HttpServlet {
         List<Product> productsYear = p.getAll();
         Boolean[] chid = new Boolean[categories.size() + 1];
         List<Product> productsTop5Sellers = p.getTopBestSellers("5");
-        List<Product> giftSets = p.getGiflSets();
         List<Product> listAll = p.getAll();
         String cidYear_raw = request.getParameter("cidYear");
-        List<Product> productFooter1 = p.getFeaturedProducts();
-        List<Product> productFooter2 = p.getFeaturedProducts();
-
+       
         //phần product 2023
         int cidYear;
         if (cidYear_raw != null) {
@@ -94,9 +91,7 @@ public class Home1Servlet extends HttpServlet {
         request.setAttribute("chid", chid);
         request.setAttribute("numberpage", numberpage);
         request.setAttribute("productsTopSellers", productsTop5Sellers);
-        request.setAttribute("giftSets", giftSets);
-        request.setAttribute("productFooter1", productFooter1);
-        request.setAttribute("productFooter2", productFooter2);
+
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

@@ -2,10 +2,6 @@ package com.model;
 
 import java.sql.Date;
 
-/**
- *
- * @author Admin
- */
 public class Product {
 
     private String name, describe, classifyStr;
