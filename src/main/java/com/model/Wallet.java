@@ -1,9 +1,5 @@
 package com.model;
 
-/**
- *
- * @author lvhho
- */
 public class Wallet {
     private String userName;
     private double balance;

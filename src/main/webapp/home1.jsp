@@ -333,67 +333,6 @@
 
 						<!-- small product area starts -->
 
-						<div class="small_product_area mb-68">
-							<div class="section_title section_title_style2">
-								<h2>Giftset</h2>
-							</div>
-							<div
-								class="small_product_container sidebar_product_column1 owl-carousel">
-								<c:set var="breakLoop" value="false" />
-								<c:forEach var="j" begin="1" end="2" step="1">
-									<c:set var="count" value="0" />
-									<div class="small_product_list">
-										<c:if test="${breakLoop == true}">
-											<c:set var="count" value="4" />
-										</c:if>
-										<c:forEach items="${requestScope.giftSets}" var="giftSet"
-											varStatus="status">
-											<c:if
-												test="${(not breakLoop && count < 3) || (breakLoop && 3 < count && count < 7)}">
-												<c:if test="${count == status.index}">
-													<article class="single_product" data-toggle="modal"
-														data-target="#modal_box">
-														<figure
-															onclick="openModal('modal_box', ${giftSet.id}, '${giftSet.image[0]}', '${giftSet.image[1]}',
-                                                                                '${giftSet.name}',${giftSet.salePrice},${giftSet.price}, '${giftSet.describe}', '${giftSet.classifyStr}',
-                                                                                '${giftSet.supplier.getCompanyName()}')">
-															<div class="product_thumb">
-																<a href="#" class="primary_img"> <img
-																	src="${giftSet.image[0]}" alt="">
-																</a> <a href="#" class="secondary_img"><img
-																	src="${giftSet.image[1]}" alt=""></a>
-															</div>
-															<figcaption class="product_content">
-																<h4 class="product_name">
-																	<a href="#">${giftSet.name}</a>
-																</h4>
-																<!-- Remove product_rating, start section -->
-																
-																
-																<!-- End section -->
-																<div class="price_box">
-																	<c:if test="${i.price != i.salePrice}">
-																		<span class="old_price">Rs. ${i.price}</span>
-																	</c:if>
-																	<span class="current_price">Rs.
-																		${giftSet.salePrice}</span>
-																</div>
-															</figcaption>
-														</figure>
-													</article>
-													<c:set var="count" value="${count + 1}" />
-												</c:if>
-												<c:if test="${count == 3}">
-													<c:set var="breakLoop" value="true" />
-												</c:if>
-											</c:if>
-
-										</c:forEach>
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-
 						<!-- small product area ends -->
 
 						<c:set var="cat" value="${requestScope.category}" />

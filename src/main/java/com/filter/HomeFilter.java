@@ -13,10 +13,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Admin
- */
 public class HomeFilter implements Filter {
 
     private static final boolean debug = true;

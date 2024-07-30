@@ -46,11 +46,8 @@ public class HomeServlet extends HttpServlet {
         List<Category> categories = d.getAll();
         List<Product> productsYear = p.getAll();
         List<Product> productsTop5Sellers = p.getTopBestSellers("5");
-        List<Product> giftSets = p.getGiflSets();
         List<Product> listAll = p.getAll();
-        List<Product> productFooter1 = p.getFeaturedProducts();
-        List<Product> productFooter2 = p.getFeaturedProducts();
-
+       
         //phan trang
         int page = 1, numPerPage = 9;
         int size = listAll.size();
@@ -81,9 +78,7 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("page", page);
         request.setAttribute("numberpage", numberpage);
         request.setAttribute("productsTopSellers", productsTop5Sellers);
-        request.setAttribute("giftSets", giftSets);
-        request.setAttribute("productFooter1", productFooter1);
-        request.setAttribute("productFooter2", productFooter2);
+
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

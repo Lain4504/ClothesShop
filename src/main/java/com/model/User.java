@@ -1,9 +1,6 @@
 package com.model;
 
-/**
- *
- * @author Admin
- */
+
 public class User {
     private String userName, fullName, password, address, phone, image, email;
     private int roleID;

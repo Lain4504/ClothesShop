@@ -2,14 +2,7 @@ package com.controller.admin.management.product;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -49,8 +42,9 @@ public class AddProductControl extends HttpServlet {
             pcategory = Integer.parseInt(pcategory_raw);
 
             // Specify the save path
-            String savePath = getServletContext().getRealPath("/") + "images/products/";
-         // String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+           // String savePath = getServletContext().getRealPath("/") + "images/products/";
+            
+         String savePath = "E:/eclipse-workspace/ClothesShop/images/products/";
             //Thay thế để xem bug. Tạo thử một cái product bằng dòng getServletContext() trước. 
              //Sau đó tạo một cái product bằng dòng dưới, ko hiển thị ảnh thì vào một file bất kỳ, gõ bậy mấy cái rồi ctrl+s, 
              //sau đó ctrl+z xóa mấy cái gõ bậy rồi ctrl+s lại là nó hiển thị được
