@@ -47,8 +47,8 @@ public class EditProductControl extends HttpServlet {
             pcategory = Integer.parseInt(pcategory_raw);
 
             // Create the directory if it doesn't exist
-            String savePath = getServletContext().getRealPath("/") + "images/products/";
-           // String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+           // String savePath = getServletContext().getRealPath("/") + "images/products/";
+           String savePath = "E:/ClothesShop/images/products/";
            //Thay thế để xem bug. Tạo thử một cái product bằng dòng getServletContext() trước. 
             //Sau đó tạo một cái product bằng dòng dưới, ko hiển thị ảnh thì vào một file bất kỳ, gõ bậy mấy cái rồi ctrl+s, 
             //sau đó ctrl+z xóa mấy cái gõ bậy rồi ctrl+s lại là nó hiển thị được
@@ -62,13 +62,16 @@ public class EditProductControl extends HttpServlet {
             for (Part part : request.getParts()) {
                 if (part.getName().equals("image")) {
                     String fileName = FileUtil.saveFile(part, fileSaveDir.getAbsolutePath());
-                    imagePaths += "images/products/" + categoryFolder + "/" + fileName + ",";
+                    System.out.println(fileName);
+                    imagePaths += "E:/ClothesShop/images/products/" + categoryFolder + "/" + fileName + ",";
+                    System.out.println(imagePaths);
                 }
             }
 
             // Remove trailing comma if present
             if (imagePaths.endsWith(",")) {
                 imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
+                System.out.println(imagePaths);
             }
 
             ProductRepository dao = new ProductRepository();
