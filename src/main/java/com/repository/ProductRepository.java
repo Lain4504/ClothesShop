@@ -118,10 +118,10 @@ public class ProductRepository extends DBUtil {
         if (category != null) {
             sql += " AND CategoryID =" + category.getId();
         }
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, year);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setInt(1, year);
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -153,9 +153,9 @@ public class ProductRepository extends DBUtil {
     public List<Product> getTopBestSellers(String number) {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT TOP " + number + " * FROM Products ORDER BY QuantitySold desc";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try  (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -187,9 +187,9 @@ public class ProductRepository extends DBUtil {
     public Product getHotDeal() {
         String sql = "SELECT TOP 1 * FROM Products WHERE (UnitPrice - (UnitPrice * Discount)) \n"
                 + "<= ALL(select (UnitPrice - (UnitPrice * Discount)) AS finalPrice FROM Products)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -216,10 +216,6 @@ public class ProductRepository extends DBUtil {
         }
         return null;
     }
-
-    
-
-
     public List<Product> getListByPage(List<Product> list, int start, int end) {
         ArrayList<Product> arr = new ArrayList<>();
         for (int i = start; i < end; i++) {
@@ -254,9 +250,9 @@ public class ProductRepository extends DBUtil {
             }
             sql += ")";
         }
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+        		PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -304,8 +300,8 @@ public class ProductRepository extends DBUtil {
             }
             sql += ")";
         }
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql);	){
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
@@ -342,8 +338,8 @@ public class ProductRepository extends DBUtil {
                 + " ORDER BY ProductID\n"
                 + "OFFSET ? ROWS\n"
                 + " FETCH NEXT 9 ROWS ONLY";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)){
             st.setInt(1, amount);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -378,10 +374,10 @@ public class ProductRepository extends DBUtil {
         List<Product> list = new ArrayList<>();
         String sql = "select * from products\n"
                 + "where [ProductName] like ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + text + "%");
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setString(1, "%" + text + "%");
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -412,9 +408,9 @@ public class ProductRepository extends DBUtil {
     // getProduct by name
     public Product getProductByName(String name) {
         String sql = "SELECT * FROM Products WHERE ProductName =" + name;
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -444,13 +440,13 @@ public class ProductRepository extends DBUtil {
 
     //
     public void updateValueProduct(Product product, int value) {
-        try {
-            String sql = "UPDATE [dbo].[Products] SET [UnitsInStock] = (UnitsInStock - ?) AND [QuantitySold] = (QuantitySold + ?) WHERE [ProductName] = ?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, value);
-            st.setInt(2, value);
-            st.setString(2, product.getName());
-            st.executeUpdate();
+        String sql = "UPDATE [dbo].[Products] SET [UnitsInStock] = (UnitsInStock - ?) AND [QuantitySold] = (QuantitySold + ?) WHERE [ProductName] = ?";
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setInt(1, value);
+        	preparedStatement.setInt(2, value);
+        	preparedStatement.setString(2, product.getName());
+        	preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
@@ -463,10 +459,10 @@ public class ProductRepository extends DBUtil {
                 + " ORDER BY ProductID\n"
                 + "OFFSET ? ROWS\n"
                 + " FETCH NEXT 6 ROWS ONLY";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, amount);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setInt(1, amount);
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -495,9 +491,9 @@ public class ProductRepository extends DBUtil {
 
     public int countAllProduct() {
         String sql = "select sum([UnitsInStock]) from Products";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -508,9 +504,9 @@ public class ProductRepository extends DBUtil {
     
     public int countAllTypeProduct() {
         String sql = "select count(*) from Products";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -524,9 +520,9 @@ public class ProductRepository extends DBUtil {
         String sql = "select top(10) *\r\n"
                 + "from Products\r\n"
                 + "order by QuantitySold desc";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -556,9 +552,9 @@ public class ProductRepository extends DBUtil {
 
     public Product getProductByID(int id) {
         String sql = "SELECT * FROM Products WHERE ProductID =" + id;
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -588,9 +584,9 @@ public class ProductRepository extends DBUtil {
 
     public int getSumQuantitySold() {
         String sql = "select SUM([QuantitySold]) from Products";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -601,20 +597,20 @@ public class ProductRepository extends DBUtil {
 
     public void deleteProduct(int pid) {
         String sql = "delete from Products where ProductID= ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, pid);
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setInt(1, pid);
+        	preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
 
     public int getNumberProductsByDiscount(double discount) {
         String sql = "select count(*) from products where discount >= ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setDouble(1, discount);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setDouble(1, discount);
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -640,9 +636,9 @@ public class ProductRepository extends DBUtil {
                 + "	)\n"
                 + "VALUES (N'" + name + "','" + supplierID + "','" + categoryID + "','" + quantityunit + "','" + price + "','" + quantity + "','" + image + "',N'" + describe + "','" + date
                 + "','" + discount + "','1')";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.executeUpdate();
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.executeUpdate();
 
         } catch (Exception e) {
 
@@ -667,28 +663,28 @@ public class ProductRepository extends DBUtil {
                 + "      ,[Discount] =? \n"
                 + " WHERE [ProductID]=?";
         System.out.println(sql);
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, name);
-            st.setInt(2, supplierID);
-            st.setInt(3, categoryID);
-            st.setString(4, quantityunit);
-            st.setDouble(5, price);
-            st.setInt(6, quantity);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setString(1, name);
+        	preparedStatement.setInt(2, supplierID);
+        	preparedStatement.setInt(3, categoryID);
+        	preparedStatement.setString(4, quantityunit);
+        	preparedStatement.setDouble(5, price);
+        	preparedStatement.setInt(6, quantity);
             if (!image.equals("")) {
-                st.setString(7, image);
-                st.setString(8, describe);
-                st.setString(9, date);
-                st.setDouble(10, discount);
-                st.setInt(11, productID);
-                st.executeUpdate();
+            	preparedStatement.setString(7, image);
+            	preparedStatement.setString(8, describe);
+            	preparedStatement.setString(9, date);
+            	preparedStatement.setDouble(10, discount);
+            	preparedStatement.setInt(11, productID);
+            	preparedStatement.executeUpdate();
                 return;
             } else {
-                st.setString(7, describe);
-                st.setString(8, date);
-                st.setDouble(9, discount);
-                st.setInt(10, productID);
-                st.executeUpdate();
+            	preparedStatement.setString(7, describe);
+            	preparedStatement.setString(8, date);
+            	preparedStatement.setDouble(9, discount);
+            	preparedStatement.setInt(10, productID);
+            	preparedStatement.executeUpdate();
             }
 
         } catch (Exception e) {

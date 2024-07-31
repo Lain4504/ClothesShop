@@ -1,6 +1,8 @@
 package com.repository;
 
 import com.utils.DBUtil;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +15,9 @@ public class SupplierRepository extends DBUtil {
     public List<Supplier> getAll() {
         List<Supplier> list = new ArrayList<>();
         String sql = "SELECT * FROM Suppliers";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Supplier s = new Supplier();
                 s.setId(rs.getInt("SupplierID"));
@@ -36,10 +38,10 @@ public class SupplierRepository extends DBUtil {
     public List<Supplier> getSuppliersBySearch(String txtSearch) {
         List<Supplier> list = new ArrayList<>();
         String sql = "SELECT * FROM Suppliers WHERE CompanyName LIKE ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, "%" + txtSearch + "%");
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Supplier s = new Supplier();
                 s.setId(rs.getInt("SupplierID"));
@@ -59,11 +61,11 @@ public class SupplierRepository extends DBUtil {
 
     public Supplier getSupplierById(int id) {
         String sql = "SELECT * FROM Suppliers WHERE SupplierID = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             //set ?
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
+        	preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             //1
             if (rs.next()) {
                 Supplier s = new Supplier();
@@ -90,15 +92,15 @@ public class SupplierRepository extends DBUtil {
                 + "           ,[HomePage])\n"
                 + "     VALUES\n"
                 + "           (?,?,?,?,?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 
-            st.setString(1, c.getCompanyName());
-            st.setString(2, c.getContactName());
-            st.setString(3, c.getCountry());
-            st.setString(4, c.getPhone());
-            st.setString(5, c.getHomepage());
-            st.executeUpdate();
+        	preparedStatement.setString(1, c.getCompanyName());
+        	preparedStatement.setString(2, c.getContactName());
+        	preparedStatement.setString(3, c.getCountry());
+        	preparedStatement.setString(4, c.getPhone());
+        	preparedStatement.setString(5, c.getHomepage());
+        	preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -106,10 +108,10 @@ public class SupplierRepository extends DBUtil {
 
     public void deleteSupplier(int sid) {
         String sql = "delete from Suppliers where SupplierID = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, sid);
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setInt(1, sid);
+        	preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
@@ -132,15 +134,15 @@ public class SupplierRepository extends DBUtil {
                 + "      ,[Phone] = ?\n"
                 + "      ,[HomePage] = ?\n"
                 + " WHERE [SupplierID] = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, companyName);
-            st.setString(2, contactName);
-            st.setString(3, country);
-            st.setString(4, phone);
-            st.setString(5, homepage);
-            st.setInt(6, id);
-            st.executeUpdate();
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        	preparedStatement.setString(1, companyName);
+        	preparedStatement.setString(2, contactName);
+        	preparedStatement.setString(3, country);
+        	preparedStatement.setString(4, phone);
+        	preparedStatement.setString(5, homepage);
+        	preparedStatement.setInt(6, id);
+        	preparedStatement.executeUpdate();
 
         } catch (Exception e) {
 
@@ -149,9 +151,9 @@ public class SupplierRepository extends DBUtil {
     
     public int countAllSupplier() {
         String sql = "select count(*) from Suppliers";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }

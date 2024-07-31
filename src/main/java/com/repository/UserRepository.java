@@ -1,6 +1,8 @@
 package com.repository;
 
 import com.utils.DBUtil;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +15,11 @@ public class UserRepository extends DBUtil {
 
     public User check(String username, String password) {
         String sql = "SELECT * FROM Users WHERE userName = ? and password = ? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
-            st.setString(2, password);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User u = new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
                         rs.getString("address"), rs.getString("phone"), rs.getString("email"), rs.getString("Image"), rs.getString("BirthDay"), rs.getInt("roleID"));
@@ -31,10 +33,10 @@ public class UserRepository extends DBUtil {
 
     public int checkAccountAdmin(String userName) {
         String sql = "select  from Users where [userName]=? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, userName);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, userName);
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -47,9 +49,9 @@ public class UserRepository extends DBUtil {
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
         String sql = "select * from Users WHERE [status] = 1 order by roleId asc";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 list.add(new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
                         rs.getString("address"), rs.getString("phone"), rs.getString("email"), rs.getString("Image"), rs.getString("BirthDay"), rs.getInt("roleID")));
@@ -61,10 +63,10 @@ public class UserRepository extends DBUtil {
 
     public boolean checkUserNameDuplicate(String username) {
         String sql = "SELECT * FROM Users WHERE userName = ? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User u = new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
                         rs.getString("address"), rs.getString("phone"), rs.getString("email"), rs.getString("Image"), rs.getString("BirthDay"), rs.getInt("roleID"));
@@ -81,12 +83,12 @@ public class UserRepository extends DBUtil {
                 + "   SET \n"
                 + "      [Image] = ?\n"
                 + " WHERE userName = ? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, image);
-            st.setString(2, userName);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, image);
+            preparedStatement.setString(2, userName);
 
-            st.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -104,16 +106,16 @@ public class UserRepository extends DBUtil {
         sql += ", [email] =" + "?";
         sql += ", [BirthDay] =" + "?";
         sql += " WHERE userName = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, name);
-            st.setString(2, address);
-            st.setString(3, phone);
-            st.setString(4, email);
-            st.setString(5, dob);
-            st.setString(6, userName);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, address);
+            preparedStatement.setString(3, phone);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, dob);
+            preparedStatement.setString(6, userName);
 
-            st.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -121,11 +123,11 @@ public class UserRepository extends DBUtil {
 
     public User getUserByUserName(String userName) {
         String sql = "SELECT * FROM [dbo].[Users] where UserName=? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             //set ?
-            st.setString(1, userName);
-            ResultSet rs = st.executeQuery();
+            preparedStatement.setString(1, userName);
+            ResultSet rs = preparedStatement.executeQuery();
             //1
             if (rs.next()) {
                 User u = new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
@@ -139,10 +141,10 @@ public class UserRepository extends DBUtil {
     }
     // 
    public int getNumberUsers() {
-        try {
-            String sql = "SELECT COUNT(*) FROM Users";
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+       String sql = "SELECT COUNT(*) FROM Users"; 
+	   try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 int number = rs.getInt(1);
                 return number;
@@ -165,20 +167,19 @@ public class UserRepository extends DBUtil {
 "           ,[Phone]\n" +
 "           ,[status])\n" +
 "     VALUES (?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-
-            st.setString(1, c.getUserName());
-            st.setString(2, c.getFullName());
-            st.setString(3, c.getPassword());
-            st.setInt(4, c.getRoleID());
-            st.setString(5, "images/users/user.png");
-            st.setString(6, c.getEmail());
-            st.setString(7, c.getBirthdate());
-            st.setString(8, "No information");
-            st.setString(9, c.getPhone());
-            st.setInt(10, 1);
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, c.getUserName());
+            preparedStatement.setString(2, c.getFullName());
+            preparedStatement.setString(3, c.getPassword());
+            preparedStatement.setInt(4, c.getRoleID());
+            preparedStatement.setString(5, "images/users/user.png");
+            preparedStatement.setString(6, c.getEmail());
+            preparedStatement.setString(7, c.getBirthdate());
+            preparedStatement.setString(8, "No information");
+            preparedStatement.setString(9, c.getPhone());
+            preparedStatement.setInt(10, 1);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -186,9 +187,9 @@ public class UserRepository extends DBUtil {
 
     public int countAllUser() {
         String sql = "select count(*) from Users where [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -211,28 +212,28 @@ public class UserRepository extends DBUtil {
                 + "           ,[status])\n"
                 + "     VALUES\n"
                 + "           (?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, UserName);
-            st.setString(2, FullName);
-            st.setString(3, Password);
-            st.setString(4, "images/users/user.png");
-            st.setInt(5, RoleID);
-            st.setString(6, Email);
-            st.setString(7, BirthDay);
-            st.setString(8, Phone);
-            st.setInt(9, 1);
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, UserName);
+            preparedStatement.setString(2, FullName);
+            preparedStatement.setString(3, Password);
+            preparedStatement.setString(4, "images/users/user.png");
+            preparedStatement.setInt(5, RoleID);
+            preparedStatement.setString(6, Email);
+            preparedStatement.setString(7, BirthDay);
+            preparedStatement.setString(8, Phone);
+            preparedStatement.setInt(9, 1);
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
 
     public void deleteUser(String username) {
         String sql = "update Users set status = 0 where UserName= ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, username);
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
@@ -251,9 +252,9 @@ public class UserRepository extends DBUtil {
         List<Spending> list = new ArrayList<>();
         String sql = "select top(5) u.*, sum(TotalMoney) as TotalMoney from Orders o inner join Users u on o.UserName = u.UserName and u.status = 1 group by u.Address, "
                 + "u.BirthDay, u.Email, u.FullName, u.UserName, u.Password, u.Image, u.RoleID, u.UserID, u.Phone, u.status\n" + " order by TotalMoney desc";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
                         rs.getString("address"), rs.getString("phone"), rs.getString("email"), rs.getString("Image"),
@@ -268,11 +269,11 @@ public class UserRepository extends DBUtil {
     public List<User> getUsersBySearchName(String txtSearch) {
         List<User> list = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[Users] where UserName LIKE ? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             //set ?
-            st.setString(1, "%" + txtSearch + "%");
-            ResultSet rs = st.executeQuery();
+            preparedStatement.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 list.add(new User(rs.getString("userName"), rs.getString("fullName"), rs.getString("password"),
                         rs.getString("address"), rs.getString("phone"), rs.getString("email"), rs.getString("Image"), rs.getString("BirthDay"), rs.getInt("roleID")));
@@ -284,22 +285,22 @@ public class UserRepository extends DBUtil {
 
     public void changePassword(User s) {
         String sql = "Update Users set password = ? where username = ? and [status] = 1";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, s.getPassword());
-            st.setString(2, s.getUserName());
-            st.executeUpdate();
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, s.getPassword());
+            preparedStatement.setString(2, s.getUserName());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
     public String checkEmailExist(String email) {
-        try {
-            String sql = "SELECT * FROM Users WHERE Email = ?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, email);
-            ResultSet rs = st.executeQuery();
+        String sql = "SELECT * FROM Users WHERE Email = ?";
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 return email;
             }
@@ -311,11 +312,11 @@ public class UserRepository extends DBUtil {
     // 
     public String getUserNameByEmail(String email) {
         String sql = "SELECT Top 1 UserName FROM [dbo].[Users] WHERE Email = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             //set ?
-            st.setString(1, email);
-            ResultSet rs = st.executeQuery();
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(1);
                 return name;
@@ -329,11 +330,11 @@ public class UserRepository extends DBUtil {
     //
     public void updatePassByUserName(String pass, String username) {
         String sql = "update Users set Password = ? where UserName= ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, pass);
-            st.setString(2, username);
-            st.executeUpdate();
+        try(Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, pass);
+            preparedStatement.setString(2, username);
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
     }
