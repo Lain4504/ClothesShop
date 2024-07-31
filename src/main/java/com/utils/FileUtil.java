@@ -1,70 +1,45 @@
 package com.utils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
 import javax.servlet.http.Part;
-
 import org.apache.commons.io.FilenameUtils;
 
 public class FileUtil {
-
-    public static File getFolderUpload(String categoryFolder) {
-        // Set resource name want to get value (application.properties).
-        ResourceBundle rb = ResourceBundle.getBundle("application");
-        // Get value of key [uploadDir] from file properties.
-        String uploadDir = rb.getString("uploadDir") + File.separator + categoryFolder;
-        File folderUpload = new File(uploadDir);
-        // Check folder is exists.
-        if (!folderUpload.exists()) {
-            // If not exists will create new folder.
-            folderUpload.mkdirs();
+	public static File getFolderUpload(String savePath, String categoryFolder) {
+		// Set resource name want to get value (application.properties).
+		File folderUpload = new File(savePath + categoryFolder);
+		// Check folder is exists.
+		if (!folderUpload.exists()) {
+			// If not exists will create new folder.
+			folderUpload.mkdirs();
+		}
+		return folderUpload;
+	}
+    public static String saveFile(Part file, String saveDir) throws IOException {
+        // Get origin filename from request.
+        String originFileName = file.getSubmittedFileName();
+        // Get extension from filename (e.g., .jpeg or .png).
+        String extension = FilenameUtils.getExtension(originFileName);
+        // Generate a new filename with UUID.
+        String outputFileName = UUID.randomUUID().toString() + "." + extension;
+        // Build path for saving file.
+        File saveDirectory = new File(saveDir);
+        if (!saveDirectory.exists()) {
+            saveDirectory.mkdirs();
         }
-        return folderUpload;
-    }
-
-    public static String saveFile(Part file, int categoryID) {
-        try {
-            // Get origin filename from request.
-            String originFileName = file.getSubmittedFileName();
-            // Get ext from filename -> .jpeg or png ...
-            String extension = FilenameUtils.getExtension(originFileName);
-            // Random a new filename with UUID.
-            String outputFileName = UUID.randomUUID().toString() + "." + extension;
-            // Build path saving file to local machine including category folder.
-            String categoryFolder = getCategoryFolder(categoryID);
-            String outputFile = FileUtil.getFolderUpload(categoryFolder).getAbsolutePath() + File.separator + outputFileName;
-            // Write file.
-            file.write(outputFile);
-            return outputFileName;
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+        String outputFile = saveDir + File.separator + outputFileName;
+        // Save the file.
+        try (InputStream input = file.getInputStream()) {
+            Files.copy(input, Path.of(outputFile), StandardCopyOption.REPLACE_EXISTING);
         }
-    }
-
-    public static Boolean removeFile(String filename, int categoryID) {
-        if (filename == null || filename.trim().length() == 0) {
-            return false;
-        }
-        String categoryFolder = getCategoryFolder(categoryID);
-        String outputFile = FileUtil.getFolderUpload(categoryFolder).getAbsolutePath() + File.separator + filename;
-        File file = new File(outputFile);
-        return file.delete();
+        return outputFileName;
     }
     
-    private static String getCategoryFolder(int categoryID) {
-        switch (categoryID) {
-            case 1: return "jackets";
-            case 2: return "polo-shirts";
-            case 3: return "dress-shirts";
-            case 4: return "sweaters";
-            case 5: return "t-shirts";
-            case 6: return "long-pants";
-            case 7: return "jeans";
-            case 8: return "short-pants";
-            case 9: return "accessories";
-            default: return "others";
-        }
-    }
 }

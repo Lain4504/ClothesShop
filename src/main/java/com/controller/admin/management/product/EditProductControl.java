@@ -6,10 +6,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -50,16 +46,26 @@ public class EditProductControl extends HttpServlet {
             psupplier = Integer.parseInt(psupplier_raw);
             pcategory = Integer.parseInt(pcategory_raw);
 
-            Collection<Part> fileParts = request.getParts().stream()
-                    .filter(part -> "image".equals(part.getName()) && part.getSize() > 0)
-                    .collect(Collectors.toList());
-            if (fileParts != null && !fileParts.isEmpty()) {
-                List<String> fileNames = fileParts.stream()
-                    .filter(part -> part.getSize() > 0) // Ensure the file part is not empty
-                    .map(part -> FileUtil.saveFile(part, pcategory)) // Save the file and get the file name
-                    .collect(Collectors.toList());
-                imagePaths = String.join(",", fileNames); // Join filenames with comma or any other delimiter
+            // Create the directory if it doesn't exist
+            //  String savePath = getServletContext().getRealPath("/") + "images/products/";
+            String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
+           //Thay thế để xem bug. Tạo thử một cái product bằng dòng getServletContext() trước. 
+            //Sau đó tạo một cái product bằng dòng dưới, ko hiển thị ảnh thì vào một file bất kỳ, gõ bậy mấy cái rồi ctrl+s, 
+            //sau đó ctrl+z xóa mấy cái gõ bậy rồi ctrl+s lại là nó hiển thị được
+
+            String categoryFolder = getCategoryFolder(pcategory);
+            File fileSaveDir = FileUtil.getFolderUpload(savePath, categoryFolder);
+
+
+            // Process each uploaded file
+         // Process each uploaded file
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("image")) {
+                    String fileName = FileUtil.saveFile(part, fileSaveDir.getAbsolutePath());
+                    imagePaths += "images/products/" + categoryFolder + "/" + fileName + ",";
+                }
             }
+
             // Remove trailing comma if present
             if (imagePaths.endsWith(",")) {
                 imagePaths = imagePaths.substring(0, imagePaths.length() - 1);
@@ -77,16 +83,16 @@ public class EditProductControl extends HttpServlet {
 
     private String getCategoryFolder(int categoryID) {
         switch (categoryID) {
-        case 1: return "jackets";
-        case 2: return "polo-shirts";
-        case 3: return "dress-shirts";
-        case 4: return "sweaters";
-        case 5: return "t-shirts";
-        case 6: return "long-pants";
-        case 7: return "jeans";
-        case 8: return "short-pants";
-        case 9: return "accessories";
-        default: return "others";
+            case 1: return "jackets";
+            case 2: return "polo-shirts";
+            case 3: return "dress-shirts";
+            case 4: return "sweaters";
+            case 5: return "t-shirts";
+            case 6: return "long-pants";
+            case 7: return "jeans";
+            case 8: return "short-pants";
+            case 9: return "accessories";
+            default: return "others";
         }
     }
 
@@ -111,8 +117,5 @@ public class EditProductControl extends HttpServlet {
         processRequest(request, response);
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+  
 }

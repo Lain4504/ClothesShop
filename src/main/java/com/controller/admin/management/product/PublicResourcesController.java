@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
-import java.util.ResourceBundle;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +20,8 @@ public class PublicResourcesController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ResourceBundle rb = ResourceBundle.getBundle("application");
-		String uploadDir = rb.getString("uploadDir"); // sua cho nay/ thay bang duong dan cua minh can
+	
+		String uploadDir = getServletContext().getRealPath("/") + "images/products/"; // sua cho nay/ thay bang duong dan cua minh can
 		String filename = URLDecoder.decode(request.getPathInfo().substring(1), "UTF-8");
 		File file = new File(uploadDir, filename);
 		if (!file.exists()) {
