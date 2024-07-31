@@ -651,6 +651,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Mobile ]*/
+/*
 .wrap-header-mobile {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -672,7 +673,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*------------------------------------------------------------------
 [ Logo mobile ]*/
-.logo-mobile {
+/*.logo-mobile {
 	display: block;
 	position: relative;
 	height: 80%;
@@ -696,7 +697,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*------------------------------------------------------------------
 [ btn show menu ]*/
-.hamburger {
+/*.hamburger {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -716,7 +717,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 /*---------------------------------------------*/
-@media (max-width: 991px) {
+/*@media (max-width: 991px) {
 	.wrap-header-mobile {
 		display: -webkit-box;
 		display: -webkit-flex;
@@ -732,7 +733,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*==================================================================
 [ Menu mobile ]*/
-.menu-mobile {
+/*.menu-mobile {
 	width: 100%;
 	background-color: white;
 	display: none;
@@ -747,14 +748,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .main-menu-m>li>a {
 	font-family: Poppins-Medium;
 	font-size: 14px;
-	color: white;
+	color: black;
 	line-height: 2.8;
 	padding: 8px 20px 8px 20px;
 }
 
-.main-menu-m>li {
-	color: white;
-	position: relative;
+.main-menu-m .item_menu{
+	position: absolute;
+	visibility: hidden;
 }
 
 .arrow-main-menu-m {
@@ -790,9 +791,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 	-o-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
+*/
+
 
 /*---------------------------------------------*/
-.sub-menu-m {
+/*.sub-menu-m {
 	background-color: #fff;
 	padding: 10px 15px 10px 32px;
 	display: none;
@@ -816,6 +819,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 		display: none;
 	}
 }
+*/
+
 
 
 /*//////////////////////////////////////////////////////////////////
