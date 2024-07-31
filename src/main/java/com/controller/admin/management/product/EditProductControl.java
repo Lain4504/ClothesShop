@@ -56,11 +56,9 @@ public class EditProductControl extends HttpServlet {
             if (fileParts != null && !fileParts.isEmpty()) {
                 List<String> fileNames = fileParts.stream()
                     .filter(part -> part.getSize() > 0) // Ensure the file part is not empty
-                    .map(FileUtil::saveFile) // Save the file and get the file name //đã bao gồm save??
+                    .map(part -> FileUtil.saveFile(part, pcategory)) // Save the file and get the file name
                     .collect(Collectors.toList());
-                // Set filenames saved to Model. Assuming images can be a list of filenames
                 imagePaths = String.join(",", fileNames); // Join filenames with comma or any other delimiter
-                System.out.println(imagePaths);
             }
             // Remove trailing comma if present
             if (imagePaths.endsWith(",")) {

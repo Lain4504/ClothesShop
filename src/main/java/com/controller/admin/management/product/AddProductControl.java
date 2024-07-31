@@ -19,8 +19,7 @@ import com.utils.FileUtil;
 @WebServlet(name = "AddProductControl", urlPatterns = {"/addproduct"})
 @MultipartConfig
 public class AddProductControl extends HttpServlet {
-	private static final long serialVersionUID = -331986167361646886L;
-
+    private static final long serialVersionUID = -331986167361646886L;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,20 +44,16 @@ public class AddProductControl extends HttpServlet {
             psupplier = Integer.parseInt(psupplierRaw);
             pcategory = Integer.parseInt(pcategoryRaw);
 
-           
             Collection<Part> fileParts = request.getParts().stream()
                     .filter(part -> "image".equals(part.getName()) && part.getSize() > 0)
                     .collect(Collectors.toList());
             if (fileParts != null && !fileParts.isEmpty()) {
                 List<String> fileNames = fileParts.stream()
                     .filter(part -> part.getSize() > 0) // Ensure the file part is not empty
-                    .map(FileUtil::saveFile) // Save the file and get the file name // save??
+                    .map(part -> FileUtil.saveFile(part, pcategory)) // Save the file and get the file name
                     .collect(Collectors.toList());
-                // Set filenames saved to Model. Assuming images can be a list of filenames
-                String.join(",", fileNames); // Join filenames with comma or any other delimiter
-                System.out.println(imagePaths);
+                imagePaths = String.join(",", fileNames); // Join filenames with comma or any other delimiter
             }
-         
 
             // Remove trailing comma if present
             if (imagePaths.endsWith(",")) {
@@ -74,22 +69,6 @@ public class AddProductControl extends HttpServlet {
         request.setAttribute("mess", "Product Added!");
         request.getRequestDispatcher("manager").forward(request, response);
     }
-
-    private String getCategoryFolder(int categoryID) {
-        switch (categoryID) {
-            case 1: return "jackets";
-            case 2: return "polo-shirts";
-            case 3: return "dress-shirts";
-            case 4: return "sweaters";
-            case 5: return "t-shirts";
-            case 6: return "long-pants";
-            case 7: return "jeans";
-            case 8: return "short-pants";
-            case 9: return "accessories";
-            default: return "others";
-        }
-    }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
