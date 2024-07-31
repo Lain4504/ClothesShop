@@ -1,8 +1,6 @@
 package com.repository;
 
 import com.utils.DBUtil;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,12 +19,11 @@ public class ProductRepository extends DBUtil {
     
     public String getImagePathsByProductId(int productId) {
         String imagePaths = "";
-        String sql = "SELECT image FROM [dbo].[Products] WHERE ProductID = ?";
+        String query = "SELECT image FROM [dbo].[Products] WHERE ProductID = ?";
 
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-        	preparedStatement.setInt(1, productId);
-            try (ResultSet rs = preparedStatement.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, productId);
+            try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     imagePaths = rs.getString("image");
                 }
@@ -40,9 +37,9 @@ public class ProductRepository extends DBUtil {
     public List<Product> getAll() {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[Products]";
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");
@@ -80,10 +77,10 @@ public class ProductRepository extends DBUtil {
         } else {
             sql += " where 0 = ?";
         }
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, cid);
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, cid);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
                 String[] images = image.split(",");

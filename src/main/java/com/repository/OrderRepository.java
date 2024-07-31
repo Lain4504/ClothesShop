@@ -1,8 +1,6 @@
 package com.repository;
 
 import com.utils.DBUtil;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -15,13 +13,13 @@ import com.model.Order;
 import com.model.User;
 
 
-public class OrderRepository {
+public class OrderRepository extends DBUtil {
 
     //
     public int getNumberOrders() {
-        String sql = "SELECT COUNT(*) FROM Orders";
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement st = connection.prepareStatement(sql)) {
+        try {
+            String sql = "SELECT COUNT(*) FROM Orders";
+            PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 int number = rs.getInt(1);
@@ -33,28 +31,29 @@ public class OrderRepository {
     }
 
     public void addOrder(User cus, Cart cart) {
-    	  // add vao bang Order
-        String sql1 = "INSERT INTO [dbo].[Orders]\n"
-                + "           ([Date]\n"
-                + "           ,[UserName]\n"
-                + "           ,[TotalMoney]\n"
-                + "           ,[status])\n"
-                + "     VALUES (?,?,?,?)";
         ProductRepository pd = new ProductRepository();
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql1)){
-        	preparedStatement.setString(1, date);
-        	preparedStatement.setString(2, cus.getUserName());
-        	preparedStatement.setDouble(3, cart.getTotalMoney());
-        	preparedStatement.setInt(4, 0);
-        	preparedStatement.executeUpdate();
+        try {
+
+            // add vao bang Order
+            String sql1 = "INSERT INTO [dbo].[Orders]\n"
+                    + "           ([Date]\n"
+                    + "           ,[UserName]\n"
+                    + "           ,[TotalMoney]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES (?,?,?,?)";
+            PreparedStatement st1 = connection.prepareStatement(sql1);
+            st1.setString(1, date);
+            st1.setString(2, cus.getUserName());
+            st1.setDouble(3, cart.getTotalMoney());
+            st1.setInt(4, 0);
+            st1.executeUpdate();
 
             // Lay ra orderID cua Order vua tao
             String sql2 = "SELECT Top 1 [OrderID] FROM [dbo].[Orders] ORDER BY [OrderID] DESC";
-            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-            ResultSet rs = preparedStatement2.executeQuery();
+            PreparedStatement st2 = connection.prepareStatement(sql2);
+            ResultSet rs = st2.executeQuery();
 
             // add thong tin vao bang OrderDetails
             if (rs.next()) {
@@ -67,13 +66,13 @@ public class OrderRepository {
                             + "           ,[UnitPrice]\n"
                             + "           ,[Discount])\n"
                             + "     VALUES (?,?,?,?,?)";
-                    PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
-                    preparedStatement3.setInt(1, oID);
-                    preparedStatement3.setInt(2, item.getProduct().getId());
-                    preparedStatement3.setInt(3, item.getQuantity());
-                    preparedStatement3.setDouble(4, item.getProduct().getPrice());
-                    preparedStatement3.setDouble(5, item.getProduct().getDiscount());
-                    preparedStatement3.executeUpdate();
+                    PreparedStatement st3 = connection.prepareStatement(sql3);
+                    st3.setInt(1, oID);
+                    st3.setInt(2, item.getProduct().getId());
+                    st3.setInt(3, item.getQuantity());
+                    st3.setDouble(4, item.getProduct().getPrice());
+                    st3.setDouble(5, item.getProduct().getDiscount());
+                    st3.executeUpdate();
                     // update quantiy sp
                     pd.updateValueProduct(item.getProduct(), item.getProduct().getId());
                 }
@@ -87,12 +86,11 @@ public class OrderRepository {
     public double totalMoneyMonth(int month, int year) {
         String sql = "select SUM([TotalMoney]) from [Orders]\r\n"
                 + "where MONTH([Date])=? and year([Date])=?";
-        try (Connection connection = DBUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-         
-        	preparedStatement.setInt(1, month);
-        	preparedStatement.setInt(2, year);
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, month);
+            st.setInt(2, year);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getDouble(1);
             }
@@ -113,23 +111,23 @@ public class OrderRepository {
                     + "                  from Orders\n"
                     + "               where day([Date]) between ? and ? and month([Date]) = ? and year([Date])= ?  and DATEPART(dw,[Date]) = ?";
         }
-        try  (Connection connection = DBUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
             if (from > to) {
-            	preparedStatement.setInt(1, from);
-            	preparedStatement.setInt(2, month);
-            	preparedStatement.setInt(3, to);
-            	preparedStatement.setInt(4, (month + 1));
-            	preparedStatement.setInt(5, year);
-            	preparedStatement.setInt(6, day);
+                st.setInt(1, from);
+                st.setInt(2, month);
+                st.setInt(3, to);
+                st.setInt(4, (month + 1));
+                st.setInt(5, year);
+                st.setInt(6, day);
             } else {
-            	preparedStatement.setInt(1, from);
-            	preparedStatement.setInt(2, to);
-            	preparedStatement.setInt(3, month);
-            	preparedStatement.setInt(4, year);
-            	preparedStatement.setInt(5, day);
+                st.setInt(1, from);
+                st.setInt(2, to);
+                st.setInt(3, month);
+                st.setInt(4, year);
+                st.setInt(5, day);
             }
-            ResultSet rs = preparedStatement.executeQuery();
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getDouble(1);
             }
@@ -140,9 +138,9 @@ public class OrderRepository {
 
     public double sumAllMoneyOrder() {
         String sql = "select SUM([TotalMoney]) from Orders";
-        try (Connection connection = DBUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getDouble(1);
             }
@@ -154,9 +152,9 @@ public class OrderRepository {
     public List<Order> getAll() {
         List<Order> list = new ArrayList<>();
         String sql = "select * from Orders order by status asc";
-        try (Connection connection = DBUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            ResultSet rs = preparedStatement.executeQuery();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 list.add(new Order(rs.getInt(1),
                         rs.getDate(2),
@@ -179,10 +177,10 @@ public class OrderRepository {
     public void updateStatus(int id) {
         List<Order> list = new ArrayList<>();
         String sql = "UPDATE [dbo].[Orders] SET [status] = 1 WHERE [OrderID] = ?";
-        try (Connection connection = DBUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-        	preparedStatement.setInt(1, id);
-        	preparedStatement.executeUpdate();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
         } catch (Exception e) {
         }
     }

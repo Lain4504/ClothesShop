@@ -83,16 +83,12 @@ public class EditProductControl extends HttpServlet {
 
     private String getCategoryFolder(int categoryID) {
         switch (categoryID) {
-            case 1: return "jackets";
-            case 2: return "polo-shirts";
-            case 3: return "dress-shirts";
-            case 4: return "sweaters";
-            case 5: return "t-shirts";
-            case 6: return "long-pants";
-            case 7: return "jeans";
-            case 8: return "short-pants";
-            case 9: return "accessories";
-            default: return "others";
+            case 1: return "Men";
+            case 2: return "Women";
+            case 3: return "Kids";
+            case 4: return "Unisex";
+            case 5: return "Gift";
+            default: return "Others";
         }
     }
 

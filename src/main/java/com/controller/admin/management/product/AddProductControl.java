@@ -39,7 +39,8 @@ public class AddProductControl extends HttpServlet {
             pdiscount = Double.parseDouble(pdiscount_raw);
             pquantity = Integer.parseInt(pquantity_raw);
             psupplier = Integer.parseInt(psupplier_raw);
-            pcategory = Integer.parseInt(pcategory_raw); 
+            pcategory = Integer.parseInt(pcategory_raw);
+
             // Specify the save path
            // String savePath = getServletContext().getRealPath("/") + "images/products/";
             
@@ -76,18 +77,12 @@ public class AddProductControl extends HttpServlet {
 
     private String getCategoryFolder(int categoryID) {
         switch (categoryID) {
-        case 1: return "jackets";
-        case 2: return "polo-shirts";
-        case 3: return "dress-shirts";
-        case 4: return "sweaters";
-        case 5: return "t-shirts";
-        case 6: return "long-pants";
-        case 7: return "jeans";
-        case 8: return "short-pants";
-        case 9: return "accessories";
-        default: return "others";
-            
-          
+            case 1: return "Men";
+            case 2: return "Women";
+            case 3: return "Kids";
+            case 4: return "Unisex";
+            case 5: return "Gift";
+            default: return "Others";
         }
     }
 

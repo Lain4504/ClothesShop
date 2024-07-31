@@ -1,8 +1,6 @@
 package com.repository;
 
 import com.utils.DBUtil;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,17 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import com.model.Category;
 
-public class CategoryRepository {
+public class CategoryRepository extends DBUtil {
      public List<Category> getAll() {
         List<Category> list = new ArrayList<>();
         String sql = "SELECT [CategoryID]\n"
                 + "      ,[CategoryName]\n"
                 + "      ,[Description]\n"
                 + "  FROM [dbo].[Categories]";
-        try (Connection connection = DBUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            ResultSet rs = preparedStatement.executeQuery();
-			System.out.println(preparedStatement);
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Category c = new Category();
                 c.setId(rs.getInt("CategoryID"));
@@ -40,12 +37,11 @@ public class CategoryRepository {
                 + "      ,[CategoryName]\n"
                 + "      ,[Description]\n"
                 + "  FROM [dbo].[Categories] where CategoryID=?";
-        try (Connection connection = DBUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
             //set ?
-        	preparedStatement.setInt(1, id);
-			System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
             //1
             if (rs.next()) {
                 Category c = new Category();
