@@ -55,7 +55,9 @@ public class AddProductControl extends HttpServlet {
             for (Part part : request.getParts()) {
                 if (part.getName().equals("image")) {
                     String fileName = FileUtil.saveFile(part, fileSaveDir.getAbsolutePath());
+                    System.out.println(fileName);
                     imagePaths.append("images/products/").append(categoryFolder).append("/").append(fileName).append(",");
+                    System.out.println(fileName);
                 }
             }
 
