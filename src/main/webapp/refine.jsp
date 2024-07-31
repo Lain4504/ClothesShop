@@ -26,6 +26,9 @@
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
         <style>
             li a:hover {
                 color: #f6692a;
@@ -55,6 +58,14 @@
                 color: black;
                 font-weight: 600;
             }
+            
+            @media (max-width: 991px) {
+  				.js-show-modal-search{
+  					
+  					
+  				}
+			}
+            
         </style>
     </head>
     <body>
@@ -63,22 +74,26 @@
                 <div class="header_container sticky-header" style="padding: 0">
                     <div class="container-fluid" style="background-color: #808080">
                         <div class="row align-items-center" style="padding: 8px 0">
+                        	<!-- Logo header -->
                             <div class="col-lg-3">
                                 <div class="logo" style="margin-left: 30px;"> 
                                     <a href="home"><img src="images/icons/logo-01.png" alt=""></a>
                                 </div>
                             </div>
+                            <!-- Search input -->
                             <div class="col-lg-6">
                                 <form action="" style="display: flex; justify-content: center">
                                     <input value="${requestScope.searchAtHome != null ? requestScope.searchAtHome : ""}" id="searchId" type="text" oninput="searchByName()" placeholder="Search your perfume" style="width: 60%; padding: 4px 10px; border-radius: 15px">
                                     <button type="submit" style="border-radius: 50%; width: 40px; font-size: 18px;"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
+                            <!-- Header right -->
                             <div class="col-lg-3">
                                 <%@ include file="header_right.jsp" %> 
                             </div>
                         </div>
-                        <div class="row" style="justify-content: flex-start; padding: 10px 0"">
+                        <!-- Header bar -->
+                        <div class="row" style="justify-content: center; padding: 10px 0"">
                             <ul style="display: flex">
                                 <li class="li_header"  >
                                     <a class="${cid_refine==0?"active":""}" href="refine?cid=${0}">ALL
@@ -96,8 +111,74 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Header Mobile -->
+				<div class="wrap-header-mobile">
+					<!-- Logo moblie -->		
+					<div class="logo-mobile">
+						<a href="home"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 search">
+							<form action="" style="display: flex; justify-content: center">
+                                    <input value="${requestScope.searchAtHome != null ? requestScope.searchAtHome : ""}" id="searchId" type="text" oninput="searchByName()" placeholder="Search your perfume">
+                                    <button type="submit" style="border-radius: 50%; width: 20%; font-size: 18px;"><i class="fa fa-search"></i></button>
+                            </form>
+						</div>
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+
+					<!-- Button show menu -->
+					<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</div>
+				</div>
+
+
+				<!-- Menu Mobile -->
+				<div class="menu-mobile">
+				
+					<ul class="main-menu-m">
+						
+						<li class="mega_items">
+							<a id="" href="#">
+								Collections 
+								<i class="fa fa-angle-down"></i></a>
+									<div class="mega_menu">
+										<ul class="mega_menu_inner_m">
+											<li><a href="refine?cid_refine=${0}">ALL</a></li>
+											<c:forEach items="${requestScope.category}" var="c">
+												<li> 
+													<a href="refine?cid_refine=${c.id}">${c.name}</a>
+												</li>
+											</c:forEach>
+										</ul>
+									</div>
+						</li>
+												
+						<li>
+							<a href="aboutus">About</a>
+						</li>
+
+						<li>
+							<a href="contact">Contact</a>
+						</li>
+					</ul>
+				</div>
         </header>
-        <div class="home_section_two color_two mb-70" style="margin-top: 100px; margin-bottom: 50px">
+        
+        <div class="home_section_two color_two mb-70">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
@@ -107,10 +188,10 @@
                             <div class="testimonial_style_two mb-60 rightleft">
                                 <div class="testimonial_container">
                                     <div class="section_title section_title_style2">
-                                        <h2 style="font-size: 20px">Filter</h2>
+                                        <h2 style="font-size: 20px" onclick="showFilter()">Filter</h2>
                                         <i style="font-size: 18px; margin-left: 5px" class="fa fa-filter"></i>
                                     </div>
-                                    <form id="f1" action="refine" method="get">
+                                    <form id="f1" action="refine" method="get" class="filter-form">
                                         <div class="section_title section_title_style2">
                                             <h2 style="font-size: 16px;">Brand</h2>
                                             <fieldset class="responsiveFacets_sectionContent " aria-hidden="false">
@@ -144,64 +225,12 @@
                                                 </c:if>
                                             </fieldset>
                                         </div>
-                                       <!--  <div class="section_title section_title_style2">
-                                            <h2 style="font-size: 16px">Average Reviews</h2>
-                                            <fieldset class="responsiveFacets_sectionContent " aria-hidden="false">
-                                                <div class="responsiveFacets_sectionItemLabel">
-                                                    <div>
-                                                        <input type="hidden" value="${numberStar}" name="numberStar" id="chosseStar"/>
-                                                        <div id="option1" style="margin-bottom: 10px; cursor: pointer" onclick="getNumberStar(this)">
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                        </div>
-                                                        <div  id="option2"  style="margin-bottom: 10px;cursor: pointer" onclick="getNumberStar(this)">
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span style="font-weight: 600; font-size: 15px; margin-left: 10px">Above</span>
-                                                        </div>
-                                                        <div  id="option3"  style="margin-bottom: 10px;cursor: pointer" onclick="getNumberStar(this)">
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span style="font-weight: 600; font-size: 15px; margin-left: 10px">Above</span>
-                                                        </div>
-                                                        <div  id="option4"  style="margin-bottom: 10px;cursor: pointer" onclick="getNumberStar(this)">
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span style="font-weight: 600; font-size: 15px; margin-left: 10px">Above</span>
-                                                        </div>
-                                                        <div  id="option5"  style="margin-bottom: 10px;cursor: pointer" onclick="getNumberStar(this)">
-                                                            <i style="color: orange" class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span style="font-weight: 600; font-size: 15px; margin-left: 10px">Above</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </div> -->
+                                       
                                         <div class="section_title section_title_style2">
                                             <h2 style="font-size: 16px">Price</h2>
                                             <fieldset class="responsiveFacets_sectionContent " aria-hidden="false">
                                                 <div class="shopee-filter-group__body shopee-price-range-filter__edit">
-                                                    <div class="shopee-price-range-filter__inputs" style="margin: 1.25rem 2px 0.625rem;
-                                                         display: flex;
-                                                         justify-content: space-between;
-                                                         align-items: center;
-                                                         padding-right: 30px">
+                                                    <div class="shopee-price-range-filter__inputs">
                                                         <input type="number" style="width: 90px" name="pricefrom" class="shopee-price-range-filter__input" placeholder="$ FROM" value="${price1 == 0 ? "$ FROM" : price1}" step="0.5" min=1>
                                                         <div class="shopee-price-range-filter__range-line" style="
                                                              flex: 1;
@@ -262,11 +291,11 @@
                             <div class="product_area" >
                                 <div class="section_title_style2" style="margin-top: 50px">
                                     <c:if test="${requestScope.cat.name == null}">
-                                        <div style="text-align: start; font-size: 18px">
+                                        <div style="text-align: start; font-size: 25px; font-weight: 600;">
                                             Sản phẩm hiện có
                                         </div>
                                     </c:if>
-                                    <h3 style="font-weight: 600; text-decoration: underline">${requestScope.cat.name}</h3>
+                                    <h3 style="font-weight: 600;">${requestScope.cat.name}</h3>
                                     <div style="text-align: center; font-size: 15px">
                                         ${requestScope.cat.describe}
                                     </div>
@@ -276,7 +305,7 @@
                                 <div id ="contentt" class="row">
                                     <c:set var="proA" value=""/>
                                     <c:forEach items="${requestScope.productPage}" var="i">
-                                        <div class="product_items col-lg-3" style="margin: 30px 0">
+                                        <div class="product_items col-lg-3 col-md-4 col-sm-6" style="margin: 30px 0">
                                             <article class="single_product">
                                                 <figure>
                                                     <div class="product_thumb">
@@ -331,7 +360,8 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-
+								
+								<!-- Pagination -->
                                 <div class="pagination col-md-12" style="margin-top: 20px; display: flex; justify-content: center">
                                     <c:if test="${requestScope.cid_refinee == null}">
                                         <c:forEach begin="${1}" end="${requestScope.numberpage}" var="i">
@@ -445,6 +475,7 @@
 
                                                                         function searchByName() {
                                                                             var text = document.querySelector("#searchId").value;
+                                                                            // Send ajax to servlet
                                                                             $.ajax({
                                                                                 url: "/ClothesShop/search",
                                                                                 type: "get",
@@ -459,6 +490,29 @@
                                                                                 }
                                                                             });
                                                                         }
+                                                                        
+                                                                        function showFilter(){
+                                                                        	var row = document.getElementById("f1");
+                                                                        	var flag = 1;
+                                                                        	if(row.style.display === "none"){
+                                                                        		flag = 0;
+                                                                        	}
+                                                                        	if (window.innerWidth <= 991){
+                                                                        		if(flag === 0){
+                                                                            		row.style.display = "flex";                                                                           		
+                                                                            		row.classList.add("show");
+                                                                            	}
+                                                                            	else {
+                                                                            		
+                                                                            		row.style.display = "none";
+                                                                            		
+                                                                            		
+                                                                            	  }
+                                                                        	}
+                                                                        	
+                                                                        }
+                                                                        
+                                                                        
 
 
         </script>

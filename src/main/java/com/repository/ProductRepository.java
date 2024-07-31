@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.model.Category;
 import com.model.Product;
@@ -17,23 +18,7 @@ public class ProductRepository extends DBUtil {
     private SupplierRepository sd = new SupplierRepository();
     private DecimalFormat df = new DecimalFormat("###.##");
     
-    public String getImagePathsByProductId(int productId) {
-        String imagePaths = "";
-        String query = "SELECT image FROM [dbo].[Products] WHERE ProductID = ?";
-
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setInt(1, productId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    imagePaths = rs.getString("image");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return imagePaths;
-    }
+  
     public List<Product> getAll() {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[Products]";
@@ -42,7 +27,9 @@ public class ProductRepository extends DBUtil {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String image = rs.getString("image");
+                
                 String[] images = image.split(",");
+            // System.out.println(Arrays.toString(images));
                 Category c = cd.getCategoryById(rs.getInt("CategoryID"));
                 Supplier s = sd.getSupplierById(rs.getInt("SupplierID"));
                 double salePrice = getSalePrice(rs.getDouble("UnitPrice"), rs.getDouble("Discount"));

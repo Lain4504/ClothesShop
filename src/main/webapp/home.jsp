@@ -64,7 +64,7 @@
 		<body>
 
 			<header>
-				<div class="main_header header_transparent header-mobile-m">
+				<div class="main_header header_transparent">
 					<div class="header_container sticky-header">
 						<div class="container-fluid">
 							<div class="row align-items-center">
@@ -109,7 +109,70 @@
 						</div>
 					</div>
 				</div>
+				<!-- Header Mobile -->
+				<div class="wrap-header-mobile">
+					<!-- Logo moblie -->		
+					<div class="logo-mobile">
+						<a href="home"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+
+					<!-- Button show menu -->
+					<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</div>
+				</div>
+
+
+				<!-- Menu Mobile -->
+				<div class="menu-mobile">
+				
+					<ul class="main-menu-m">
+						
+						<li class="mega_items"><a id="" href="#">
+													Collections <i
+															class="fa fa-angle-down"></i></a>
+													<div class="mega_menu">
+														<ul class="mega_menu_inner_m">
+															<li><a
+																	href="refine?cid_refine=${0}">ALL</a></li>
+															<c:forEach items="${requestScope.category}" var="c">
+																<li> 
+																	<a href="refine?cid_refine=${c.id}">${c.name}</a>
+																</li>
+															</c:forEach>
+														</ul>
+													</div>
+												</li>
+												
+						<li>
+							<a href="aboutus">About</a>
+						</li>
+
+						<li>
+							<a href="contact">Contact</a>
+						</li>
+					</ul>
+				</div>
 			</header>
+			
+			
 
 
 			<!-- slider section starts  -->
