@@ -39,12 +39,11 @@ public class AddProductControl extends HttpServlet {
             pdiscount = Double.parseDouble(pdiscount_raw);
             pquantity = Integer.parseInt(pquantity_raw);
             psupplier = Integer.parseInt(psupplier_raw);
-            pcategory = Integer.parseInt(pcategory_raw);
-
+            pcategory = Integer.parseInt(pcategory_raw); 
             // Specify the save path
            // String savePath = getServletContext().getRealPath("/") + "images/products/";
             
-         String savePath = "E:/eclipse-workspace/ClothesShop/images/products/";
+         String savePath = "E:/eclipse-workspace/ClothesShop/src/main/webapp/images/products/";
             //Thay thế để xem bug. Tạo thử một cái product bằng dòng getServletContext() trước. 
              //Sau đó tạo một cái product bằng dòng dưới, ko hiển thị ảnh thì vào một file bất kỳ, gõ bậy mấy cái rồi ctrl+s, 
              //sau đó ctrl+z xóa mấy cái gõ bậy rồi ctrl+s lại là nó hiển thị được
@@ -77,12 +76,18 @@ public class AddProductControl extends HttpServlet {
 
     private String getCategoryFolder(int categoryID) {
         switch (categoryID) {
-            case 1: return "Men";
-            case 2: return "Women";
-            case 3: return "Kids";
-            case 4: return "Unisex";
-            case 5: return "Gift";
-            default: return "Others";
+        case 1: return "jackets";
+        case 2: return "polo-shirts";
+        case 3: return "dress-shirts";
+        case 4: return "sweaters";
+        case 5: return "t-shirts";
+        case 6: return "long-pants";
+        case 7: return "jeans";
+        case 8: return "short-pants";
+        case 9: return "accessories";
+        default: return "others";
+            
+          
         }
     }
 
